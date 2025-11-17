@@ -1,17 +1,39 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, NavLink } from 'react-router-dom'
 import Logo from '../Logo.jsx'
+import "./header.module.css"
 
 const Header = () => {
+
+  const nav = [
+    {
+      name: "Rent",
+      path: '/rent'
+    },
+    {
+      name: "Buy",
+      path: '/buy'
+    },
+    {
+      name: "Sell",
+      path: '/sell'
+    }
+  ]
+  
+  const style = {
+    backgroundColor: "#E8E6F9",
+    color: '#7065F0',
+    padding: '0.5em',
+    borderRadius: '0.4rem'
+  }
+
   return (
     <>
       <header className='flex justify-between items-center pt-4 pb-4 p-10'>
         <Logo />
         <nav>
           <ul className='flex gap-8 items-center'>
-            <li>Rent</li>
-            <li>Buy</li>
-            <li>Sell</li>
+            {nav.map(data => <NavLink key={data.name} to={data.path} style={({isActive}) => isActive ? style : null}>{data.name}</NavLink>)}
             <li>Manage Property</li>
             <li>Resources</li>
           </ul>
@@ -25,6 +47,7 @@ const Header = () => {
             className='bg-[#7065F0] pt-3 pb-3 p-6 text-white rounded-xl cursor-pointer'><Link to='/sign-up'>Sign up</Link></button>
         </div>
       </header>
+
       <Outlet />
     </>
   )

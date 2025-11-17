@@ -8,7 +8,7 @@ import LogoImg from "../../Images/Logo.png";
 import DesignFlag from "../../Images/Design-Flag.png";
 import { FaHeart } from 'react-icons/fa';
 import { FaBed } from 'react-icons/fa';
-import Squares from "../../Images/Property 1=Square Meters, Property 2=Outline.png";
+import Squares from "../../Images/Square-Meters-Outline.png";
 
 const Login = () => {
   return (

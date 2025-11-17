@@ -1,5 +1,6 @@
 import React from 'react'
 import LogoImg from '../Images/Logo.png'
+import { Link } from 'react-router-dom'
 
 const Logo = () => {
   return (
@@ -9,7 +10,7 @@ const Logo = () => {
         src={LogoImg}
         alt='Logo'/>
       
-      <p>Estatery</p>
+      <Link to='/'>Estatery</Link>
     </div>
   )
 }
