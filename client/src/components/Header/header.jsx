@@ -1,19 +1,12 @@
 import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
-import Logo from "../../Images/Logo.png"
+import Logo from '../Logo.jsx'
 
 const Header = () => {
   return (
     <>
       <header className='flex justify-between items-center pt-4 pb-4 p-10'>
-        <div className='flex gap-1 items-center'>
-          <img
-            className='h-6 m-0' 
-            src={Logo} 
-            alt='Logo'/>
-          
-          <p>Estatery</p>
-        </div>
+        <Logo />
         <nav>
           <ul className='flex gap-8 items-center'>
             <li>Rent</li>

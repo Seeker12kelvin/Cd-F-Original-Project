@@ -1,7 +1,7 @@
 import React from "react"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from "./Pages/Home/home"
-import Header from "./Layouts/Header/header"
+import Header from "./components/Header/header"
 import SignUp from "./Pages/SignUp/signUp"
 import Login from "./Pages/Login/login"
 
