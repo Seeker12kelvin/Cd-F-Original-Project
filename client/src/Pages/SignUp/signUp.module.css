@@ -1,0 +1,25 @@
+button {
+  cursor: pointer;
+}
+
+.login-form {
+  padding: 0.7rem;
+  font-size: 0.8em;
+}
+
+.login-form input {
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  outline: none;
+}
+
+.login-form div div {
+  gap: 0.5rem;
+}
+
+.login-form button {
+  font-size: 1.2em;
+  padding: 0.7rem 2.5rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
