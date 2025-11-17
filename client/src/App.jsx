@@ -1,14 +1,31 @@
 import React from "react"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from "./Home/home"
+import Home from "./Pages/Home/home"
+import Header from "./Layouts/Header/header"
+import SignUp from "./Pages/SignUp/signUp"
+import Login from "./Pages/Login/login"
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
-      errorElement: <div>URL not found bro</div>
+      element: <Header />,
+      errorElement: <div>URL not found bro</div>,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        }
+      ]
+    },
+    {
+      path: '/sign-up',
+      element:<SignUp />
+    },
+    {
+      path: '/login',
+      element:<Login />
     }
   ])
 
