@@ -5,6 +5,7 @@ import Header from "./components/Header/header";
 import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
 import Rent from "./Pages/Rent/rent";
+import RentDetails from "./Pages/Rent//Rent Details/rentDetails";
 
 function App() {
 
@@ -21,6 +22,10 @@ function App() {
         {
           path: 'rent',
           element: <Rent />
+        },
+        {
+          path: 'rent/:id',
+          element: <RentDetails />
         }
       ]
     },
