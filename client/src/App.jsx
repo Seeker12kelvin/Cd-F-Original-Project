@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from "./Pages/Home/home";
+import LandingPage from "./Pages/LandingPage/landingPage";
+import Home from "./Pages/Home/home"
 import Header from "./components/Header/header";
 import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
@@ -28,7 +29,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: <LandingPage />,
         },
         {
           path: 'rent',
@@ -39,6 +40,10 @@ function App() {
           element: <RentDetails />
         }
       ]
+    },
+    {
+      path: '/home',
+      element: <Home />
     },
     {
       path: '/sign-up',

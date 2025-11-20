@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "./login.module.css";
 import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
 import Logo from '../../components/Logo';
@@ -17,6 +17,8 @@ const Login = () => {
   const [userData, setUserData] = useState({email: '', password: ''})
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
 
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setUserValidity({email: e.target.elements.email.value, password: e.target.elements.password.value})
@@ -30,6 +32,7 @@ const Login = () => {
       const userValue = Object.values(data)
       const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
       found ? setUserData({email: found.email, password: found.password}) : null
+      found ? navigate('/home', {state: {name: found.name, email: found.email}}) : null
     })
   }, [userValidity])
 
