@@ -1,3 +1,53 @@
 .no-scrollbar::-webkit-scrollbar{
   display: none;
 }
+
+.btn-secondary,
+.btn-light {
+  color: #7065F0;
+}
+
+.btn-secondary {
+  border: 0.2rem solid hsl(240, 60%, 98%);
+  background-color: #F7F7FD;
+}
+
+.btn-outline,
+.btn-primary,
+.btn-secondary,
+.btn-light,
+.btn-dark {
+  padding: 0.7rem 1.5rem;
+}
+
+.btn-outline,
+.btn-dark {
+  width: 100%;
+  justify-content: center;
+  border-width: 0.1rem;
+}
+
+.btn-light {
+  background-color: #E8E6F9;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-light,
+.btn-dark {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #7065F0;
+  justify-content: center;
+}
+
+.btn-dark,
+.btn-primary {
+  color: white;
+}
