@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./signUp.module.css";
 import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
@@ -9,8 +9,31 @@ import DesignFlag from "../../Images/Design-Flag.png";
 import { FaHeart } from 'react-icons/fa';
 import { FaBed } from 'react-icons/fa';
 import Squares from "../../Images/Square-Meters-Outline.png";
+import { useContext } from 'react';
+import User from '../../components/User';
 
 const SignUp = () => {
+  const {push, reference,} = useContext(User)
+  
+
+  const [userData, setUserData] = useState({name: '', password: '', email: ''})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setUserData(
+      {
+        name: e.target.elements.name.value,
+        password: e.target.elements.password.value,
+        email: e.target.elements.email.value
+      })
+  }
+  
+  useEffect(() => {
+    !userData.email && !userData.password ? null
+    :
+    push(reference, userData)
+  }, [userData])
+
   return (
     <div className='flex justify-between h-screen'>
       <div className='w-[50%] flex flex-col gap-10 items-center h-full'>
@@ -18,7 +41,7 @@ const SignUp = () => {
           <Logo className='self-center justify-self-start'/>
         </div>
 
-        <form className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
+        <form onSubmit={handleSubmit} className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
           <div>
             <h1 className='text-[32px] font-bold'>Welcome back</h1>
             <p className='text-[#000929] opacity-50'>Welcome back! Please enter your details. </p>
@@ -71,6 +94,7 @@ const SignUp = () => {
           </div>
 
           <button
+            type='submit'
             className='bg-[#7065F0] text-white'>
             Sign up
           </button>

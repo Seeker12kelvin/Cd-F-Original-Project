@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./login.module.css";
 import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
@@ -9,8 +9,30 @@ import DesignFlag from "../../Images/Design-Flag.png";
 import { FaHeart } from 'react-icons/fa';
 import { FaBed } from 'react-icons/fa';
 import Squares from "../../Images/Square-Meters-Outline.png";
+import User from '../../components/User';
 
 const Login = () => {
+
+  const { onValue, reference } = useContext(User)
+  const [userData, setUserData] = useState({email: '', password: ''})
+  const [userValidity, setUserValidity] = useState({email: '', password: ''})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setUserValidity({email: e.target.elements.email.value, password: e.target.elements.password.value})
+  }
+
+  useEffect(() => {
+    !userValidity.email && !userValidity.password ? null
+    :
+    onValue(reference, snapshot => {
+      const data = snapshot.val()
+      const userValue = Object.values(data)
+      const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
+      found ? setUserData({email: found.email, password: found.password}) : null
+    })
+  }, [userValidity])
+
   return (
     <div className='flex justify-between h-screen'>
       <div className='w-[50%] flex flex-col gap-10 items-center h-full'>
@@ -18,10 +40,11 @@ const Login = () => {
           <Logo className='self-center justify-self-start'/>
         </div>
 
-        <form className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
+        <form onSubmit={handleSubmit} className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
           <div>
             <h1 className='text-[32px] font-bold'>Welcome back</h1>
             <p className='text-[#000929] opacity-50'>Welcome back! Please enter your details. </p>
+            <p>{userData.email}</p>
           </div>
 
           <div className='flex flex-col gap-6'>

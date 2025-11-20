@@ -6,8 +6,19 @@ import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
 import Rent from "./Pages/Rent/rent";
 import RentDetails from "./Pages/Rent//Rent Details/rentDetails";
+import User from "./components/User";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 function App() {
+
+  const firebaseConfig = {
+    databaseURL: "https://comm-2eb25-default-rtdb.firebaseio.com/"
+  }
+
+  const app = initializeApp(firebaseConfig)
+  const database = getDatabase(app)
+  const reference = ref(database, 'UserData')
 
   const router = createBrowserRouter([
     {
@@ -41,7 +52,17 @@ function App() {
 
   return (
     <>
+      <User.Provider value={{
+        initializeApp,
+        getDatabase,
+        ref,
+        push,
+        onValue,
+        firebaseConfig,
+        reference
+      }}>
       <RouterProvider router={router} />
+      </User.Provider>
     </>
   )
 }
