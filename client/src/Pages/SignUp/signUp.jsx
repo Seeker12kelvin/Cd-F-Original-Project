@@ -13,10 +13,11 @@ import { useContext } from 'react';
 import User from '../../components/User';
 
 const SignUp = () => {
-  const {push, reference,} = useContext(User)
+  const {push, reference, onValue} = useContext(User)
   
 
   const [userData, setUserData] = useState({name: '', password: '', email: ''})
+  const [found, setFound] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,7 +32,12 @@ const SignUp = () => {
   useEffect(() => {
     !userData.email && !userData.password ? null
     :
-    push(reference, userData)
+    onValue(reference, snapshot => {
+      const data = snapshot.val()
+      const userValue = Object.values(data)
+      const found = userValue.find(val => val.email === userData.email && val.password === userData.password)
+      found ? setFound(prev => !prev): push(reference, userData)
+    })
   }, [userData])
 
   return (
@@ -82,6 +88,8 @@ const SignUp = () => {
                 <Link to='/forgot-password' className='text-[#7065F0]'>Forgot Password?</Link>
               </div>
             </div>
+            {found ? <p>You already have an account set up with us. <Link to={'/login'}>Login?</Link></p>: null}
+            
           </div>
           
           <div className='flex gap-2'>

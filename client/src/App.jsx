@@ -7,6 +7,8 @@ import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
 import Rent from "./Pages/Rent/rent";
 import RentDetails from "./Pages/Rent//Rent Details/rentDetails";
+import Dashboard from "./Pages/Dashboard/dashboard";
+import Applications from "./Pages/Applications/applications"
 import User from "./components/User";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
@@ -43,7 +45,21 @@ function App() {
     },
     {
       path: '/home',
-      element: <Home />
+      element: <Home />,
+      children: [
+        {
+          index: true,
+          element: <Dashboard />
+        },
+        {
+          path: 'applications',
+          element: <Applications />
+        },
+        {
+          path: 'favorited',
+          element: <Favorited />
+        }
+      ]
     },
     {
       path: '/sign-up',

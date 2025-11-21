@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from "./login.module.css";
-import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
+import { FaBath, FaGoogle, FaStarOfLife } from 'react-icons/fa';
 import Logo from '../../components/Logo';
 import BeverlyImg from "../../Images/BeverlySpring.png";
 import LogoImg from "../../Images/Logo.png";
@@ -16,6 +16,7 @@ const Login = () => {
   const { onValue, reference } = useContext(User)
   const [userData, setUserData] = useState({email: '', password: ''})
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
+  const [notFound, setNotFound] = useState(false)
 
   const navigate = useNavigate()
 
@@ -31,8 +32,8 @@ const Login = () => {
       const data = snapshot.val()
       const userValue = Object.values(data)
       const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
-      found ? setUserData({email: found.email, password: found.password}) : null
-      found ? navigate('/home', {state: {name: found.name, email: found.email}}) : null
+      found ? setUserData({email: found.email, password: found.password}) : setNotFound(prev => !prev)
+      found ? navigate('/home', {state: {name: found.name, email: found.email}}) : setNotFound(prev => !prev)
     })
   }, [userValidity])
 
@@ -73,6 +74,7 @@ const Login = () => {
 
                 <Link to='/forgot-password' className='text-[#7065F0] text-center'>Forgot Password?</Link>
             </div>
+            {notFound ? <p>!You do not have an account set up with us. <Link to={'/sign-up'}>Sign up?</Link></p>: null}
           </div>
 
           <div className='flex flex-col gap-3'>
