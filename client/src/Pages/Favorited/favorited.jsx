@@ -1,13 +1,13 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-const Applications = () => {
+const Favorite = () => {
 
   const { name } = useLocation().state
 
   return (
-    <div>Applications{name}</div>
+    <div>Favorite{name}</div>
   )
 }
 
-export default Applications
+export default Favorite

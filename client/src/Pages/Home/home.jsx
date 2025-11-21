@@ -3,12 +3,12 @@ import "./home.module.css"
 import { useLocation, Outlet, NavLink } from "react-router-dom"
 import { IoCloseOutline } from "react-icons/io5";
 import Logo from "../../components/Logo"
-import { FaAngleDown, FaArrowCircleDown, FaArrowDown, FaBell, FaSearch } from 'react-icons/fa';
+import { FaAngleDown, FaBell, FaSearch } from 'react-icons/fa';
 
 const Home = () => {
 
   const userInfo = useLocation()
-  const { name } = userInfo.state
+  const { name, email,  } = userInfo.state
   const [remove, setRemove] = useState(false)
 
   const [searchFilter, setSearchFilter] = useState(null)
@@ -20,11 +20,12 @@ const Home = () => {
   const styleLists = {
     color: '#7065F0',
     borderBottom: '3px solid #7065F0',
+    marginTop: '2.3rem',
     paddingBottom: '2rem'
   }
 
   const firstName = name.split(' ')[0]
-  const lastName = name.split('') == 1 ? name.split(' ')[1]: name.split('') == 3 ? name.split('')[2]: name.split(' ')[2]
+  const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
 
   return (
     <div>
@@ -41,9 +42,9 @@ const Home = () => {
         <div className='flex items-center h-full gap-15'>
           <Logo />
           <ul className='flex items-center h-full gap-12'>
-            <NavLink style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
-            <NavLink to='applications' style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
-            <NavLink to='favorited' style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
+            <NavLink to={''} end state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
+            <NavLink to='applications' state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
+            <NavLink to='favorite' state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
           </ul>
         </div>
 

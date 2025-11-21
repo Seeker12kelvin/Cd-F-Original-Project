@@ -32,8 +32,12 @@ const Login = () => {
       const data = snapshot.val()
       const userValue = Object.values(data)
       const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
-      found ? setUserData({email: found.email, password: found.password}) : setNotFound(prev => !prev)
-      found ? navigate('/home', {state: {name: found.name, email: found.email}}) : setNotFound(prev => !prev)
+      if(found){
+        setUserData({email: found.email, password: found.password})
+        navigate('/home', {state: {name: found.name, email: found.email}})
+      }else {
+        setNotFound(prev => !prev)
+      }
     })
   }, [userValidity])
 
