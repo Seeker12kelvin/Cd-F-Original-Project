@@ -32,7 +32,7 @@ const Home = () => {
       {!remove ? <div className='bg-[#7065F0] w-full p-4 pr-10 text-[white] font-light flex items-center justify-between'>
         <p>Welcome, {firstName}! Here’s your dashboard to search listing and track your tenant applications.</p>
         <div className='flex gap-4 items-center'>
-          <button className='bg-[white] text-[#7065F0] p-3 rounded-xl font-normal'>Learn more</button>
+          <button className='bg-[white] text-[#7065F0] p-3 rounded-xl font-normal'>Learn more</button> 
           <IoCloseOutline onClick={() => setRemove(true)} className='text-xl cursor-pointer bg-[#8080804c]' />
         </div>
       </div>: null}
