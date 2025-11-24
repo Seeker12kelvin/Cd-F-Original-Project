@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaAngleDown, FaCalendar, FaCalendarAlt, FaDotCircle, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
+import "./application.module.css"
+import { FaAngleDown, FaCalendar, FaCalendarAlt, FaDotCircle, FaFilePdf, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
 import { FaRegAddressBook } from "react-icons/fa6";
 import { useLocation, Link } from 'react-router-dom';
 import properDetails from '../../data/data';
@@ -8,14 +9,24 @@ const Applications = () => {
 
   const { name } = useLocation().state
 
+  const firstName = name.split(' ')[0]
+  const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
+
   const [searchFilter, setSearchFilter] = useState(name)
+
+  const [profilePic, setProfilePic] = useState(null)
   
   const handleChange = (e) => {
     setSearchFilter(e.target.value)
   }
 
+  const handleInput = (e) => {
+    const file = e.target.files[0]
+    setProfilePic(URL.createObjectURL(file))
+  }
+
   return (
-    <div className='p-10 pt-5'>
+    <div className='p-10 pt-5 flex justify-between gap-10'>
       <div className='w-[70%] flex flex-col gap-6'>
 
         <div className='flex items-center justify-between gap-2 border-[#E0DEF7] border rounded-xl p-2 pr-4 pl-4'>
@@ -85,8 +96,48 @@ const Applications = () => {
         </div>
       </div>
 
-      <div className=''>
+      <div className='w-[30%] border-2 border-[#E0DEF7] p-6 rounded-xl'>
+        <div className='flex items-center justify-between'>
+          <h3>Rental Apllication</h3>
+          <button><FaFilePdf />Export as PDF</button>
+        </div>
 
+        <div className='mt-4 border-2 border-[#E0DEF7] p-4 rounded-xl'>
+          <div className='flex flex-col items-center'>
+            {profilePic ? 
+            <img src={profilePic} 
+              className='w-30 h-30 object-cover rounded-full'
+              alt='user profile picture'/> 
+            : 
+            <div><input onChange={handleInput} type='file' accept='/image/jpeg, image/png'/></div>}
+
+            <h2 className='text-xl font-bold'>{firstName} {lastName}</h2>
+            <p className='text-lg text-[#00092953]'>Houston, TX</p>
+          </div>
+          
+          <div className='flex flex-col gap-5'>
+            <div className='border-b border-[#E0DEF7] text-[black] pb-7'>
+              <button 
+                className='bg-[#E8E6F9] p-2 rounded-xl mt-4 w-full'>518 ..... <span className='text-[#7065F0]'>Show SSN</span></button>
+            </div>
+            <p className='w-full text-[#00092953] flex justify-between items-center border-b border-[#E0DEF7] pb-5'>Date of Birth <input type="date" /></p>
+            <p className='w-full text-[#00092953] flex justify-between items-center border-b border-[#E0DEF7] pb-5'>Age <input type="number" placeholder='Your age'/></p>
+            <p className='w-full text-[#00092953] flex justify-between items-center border-b border-[#E0DEF7] pb-5'>Email <input type="email" placeholder='Email address'/></p>
+            <p className='w-full text-[#00092953] flex justify-between items-center border-b border-[#E0DEF7] pb-5'>Phone Number <input type="number" placeholder='Phone number'/></p>
+            
+            <div>
+              <div>
+                <p>Total Income
+$4,500/mo</p>
+                <p>Income to Rent 2.3X</p>
+              </div>
+              <div>
+                <p></p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
