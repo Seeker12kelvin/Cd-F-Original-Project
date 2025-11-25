@@ -12,7 +12,7 @@ import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import { getDatabase, ref, push, get} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 function App() {
 
@@ -23,6 +23,8 @@ function App() {
   const app = initializeApp(firebaseConfig)
   const database = getDatabase(app)
   const reference = ref(database, 'UserData')
+
+  const [profilePic, setProfilePic] = React.useState('')
 
   const router = createBrowserRouter([
     {
@@ -79,9 +81,11 @@ function App() {
         getDatabase,
         ref,
         push,
-        onValue,
+        get,
         firebaseConfig,
-        reference
+        reference,
+        profilePic,
+        setProfilePic
       }}>
       <RouterProvider router={router} />
       </User.Provider>

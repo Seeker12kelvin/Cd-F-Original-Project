@@ -10,14 +10,24 @@ import { FaHeart } from 'react-icons/fa';
 import { FaBed } from 'react-icons/fa';
 import Squares from "../../Images/Square-Meters-Outline.png";
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
 
 const SignUp = () => {
-  const {push, reference, onValue} = useContext(User)
+  const {push, reference, get, profilePic } = useContext(User)
   
-
-  const [userData, setUserData] = useState({name: '', password: '', email: ''})
+  const [userData, setUserData] = useState(
+    { name: '',
+      password: '', 
+      email: '', 
+      profilePic: profilePic, 
+      dateOfBirth: '',
+      phoneNumber: '', 
+      age: ''
+    }
+  )
   const [found, setFound] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,19 +35,34 @@ const SignUp = () => {
       {
         name: e.target.elements.name.value,
         password: e.target.elements.password.value,
-        email: e.target.elements.email.value
+        email: e.target.elements.email.value,
+        profilePic: profilePic,
+        dateOfBirth: '',
+        phoneNumber: '',
+        age: ''
       })
   }
   
   useEffect(() => {
-    !userData.email && !userData.password ? null
-    :
-    onValue(reference, snapshot => {
-      const data = snapshot.val()
-      const userValue = Object.values(data)
-      const found = userValue.find(val => val.email === userData.email && val.password === userData.password)
-      found ? setFound(prev => !prev): push(reference, userData)
-    })
+      if (!userData.email || !userData.password) return;
+
+      get(reference).then(snapshot => {
+        const data = snapshot.val() || {};
+        const userValue = Object.values(data);
+        
+        const foundUser = userValue.find(
+          val => val.email === userData.email && val.password === userData.password
+        );
+
+        if (foundUser) {
+          setFound(true);
+          navigate('/login');
+        } else {
+          const newUserRef = push(reference, userData);
+          localStorage.setItem("currentUserId", newUserRef.key);
+          navigate('/login');
+        }
+      });
   }, [userData])
 
   return (

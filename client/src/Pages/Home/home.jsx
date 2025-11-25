@@ -8,7 +8,7 @@ import { FaAngleDown, FaBell, FaSearch } from 'react-icons/fa';
 const Home = () => {
 
   const userInfo = useLocation()
-  const { name, email,  } = userInfo.state
+  const { name, email, profilePic } = userInfo.state
   const [remove, setRemove] = useState(false)
 
   const [searchFilter, setSearchFilter] = useState(null)
@@ -25,7 +25,7 @@ const Home = () => {
   }
 
   const firstName = name.split(' ')[0]
-  const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
+  const lastName = name.split(' ')[1] ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
 
   return (
     <div>
@@ -42,9 +42,9 @@ const Home = () => {
         <div className='flex items-center h-full gap-15'>
           <Logo />
           <ul className='flex items-center h-full gap-12'>
-            <NavLink to={''} end state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
-            <NavLink to='applications' state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
-            <NavLink to='favorite' state={{name, email, firstName, lastName}} style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
+            <NavLink to={''} end state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
+            <NavLink to='applications' state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
+            <NavLink to='favorite' state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
           </ul>
         </div>
 

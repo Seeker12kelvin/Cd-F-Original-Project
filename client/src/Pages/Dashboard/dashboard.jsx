@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./dashboard.module.css"
 import { FaDotCircle } from 'react-icons/fa';
 import { CiMenuBurger, CiMenuFries, CiMenuKebab } from 'react-icons/ci';
 import { useLocation } from 'react-router-dom';
+import User from '../../components/User';
 
 const Dashboard = () => {
 
-  const { name} = useLocation().state
+  const {setProfilePic, profilePic} = useContext(User)
+  const location = useLocation()
+  const { name } = location.state
 
   const firstName = name.split(' ')[0]
   const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
@@ -17,11 +20,19 @@ const Dashboard = () => {
     { label: "Remaining", value: '$800' }
   ];
 
-  const [profilePic, setProfilePic] = useState(null)
+    const handleInput = async (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
 
-  const handleInput = (e) => {
-    const file = e.target.files[0]
-    setProfilePic(URL.createObjectURL(file))
+      reader.onloadend = () => {
+        setProfilePic(reader.result);
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        setProfilePic('');
+      }
   }
 
   return (

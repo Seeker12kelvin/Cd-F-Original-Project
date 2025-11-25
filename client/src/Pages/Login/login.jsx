@@ -14,7 +14,7 @@ import User from '../../components/User';
 const Login = () => {
 
   const { onValue, reference } = useContext(User)
-  const [userData, setUserData] = useState({email: '', password: ''})
+  const [userData, setUserData] = useState({email: '', password: '', profilePic: ''})
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
   const [notFound, setNotFound] = useState(false)
 
@@ -33,8 +33,8 @@ const Login = () => {
       const userValue = Object.values(data)
       const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
       if(found){
-        setUserData({email: found.email, password: found.password})
-        navigate('/home', {state: {name: found.name, email: found.email}})
+        setUserData({email: found.email, password: found.password, profilePic: found.profilePic})
+        navigate('/home', {state: {name: found.name, email: found.email, profilePic: found.profilePic}})
       }else {
         setNotFound(prev => !prev)
       }
