@@ -4,7 +4,6 @@ import User from './User';
 const UpdateUserInfo = () => {
 
   const {
-    reference,
     updatedProfilePic,
     database,
     update,

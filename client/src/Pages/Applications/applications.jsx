@@ -17,14 +17,6 @@ const Applications = () => {
   const firstName = name.split(' ')[0]
   const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
 
-  const [searchFilter, setSearchFilter] = useState('')
-  const [filterData, setFilterData] = useState([])
-  
-  const handleChange = (e) => {
-    setSearchFilter(e.target.value)
-    setFilterData(e.target.value)
-  }
-
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -33,12 +25,14 @@ const Applications = () => {
     }
   }
   
-  const filter = properDetails.filter(data => {
-    const lowerFilterData = data.name.split(' ')[0]
-    const splitFirstName = lowerFilterData.split(' ')
-    const firstNameLower = splitFirstName.map(namePart => namePart)
-    return firstNameLower == filterData || data.userName == filterData || data.location == filterData
-  });
+  const [filteredProperties, setFilteredProperties] = useState(properDetails)
+  const handleChange = (searchValue) => {
+    const filtered = properDetails.filter((property) =>
+      property.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredProperties(filtered);
+  }
 
   return (
     <div className='p-10 pt-5 flex justify-between items-start gap-4'>
@@ -53,9 +47,8 @@ const Applications = () => {
               <input 
                 className='outline-none rounded-xl p-2 w-full'
                 type='text' 
-                value={searchFilter} 
                 placeholder='Search for properties, application, etc.'
-                onChange={handleChange}/>
+                onChange={(e) => handleChange(e.target.value)}/>
             </div>
             <div className='w-60 flex items-center justify-center gap-2 border-[#E0DEF7] border rounded-xl p-2 pl-2 pr-2'>
               <FaRegCalendarAlt />
@@ -82,7 +75,7 @@ const Applications = () => {
             </div>
 
             <div className={`w-full h-[932px] flex flex-col gap-4 text-[1em] overflow-scroll ${styles["no-scrollbar"]}`}>
-              {searchFilter === '' ? properDetails.map(data => {
+              {!filteredProperties ? properDetails.map(data => {
                 return(
                   <Link key={data.id} to={`/rent/${data.id}`} className='active:bg-[#F0EFFB]'>
                     <div className='flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]'>
@@ -103,7 +96,7 @@ const Applications = () => {
                     </div>
                   </Link>
                 )
-              }) : filter.map(filteredData => {
+              }) : filteredProperties.map(filteredData => {
                 return(
                   <Link key={filteredData.id} to={`/rent/${filteredData.id}`} className='active:bg-[#F0EFFB]'>
                     <div className='flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]'>
