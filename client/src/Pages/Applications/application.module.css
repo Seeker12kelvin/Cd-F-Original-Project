@@ -1,5 +1,9 @@
-input {
+.app-input {
   border: none;
   outline: none;
   background: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
 }

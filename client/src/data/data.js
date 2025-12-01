@@ -126,4 +126,6 @@ const properDetails = [
   }
 ]
 
+export const favoriteDetails = []
+
 export default properDetails

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from "./Pages/LandingPage/landingPage";
 import Home from "./Pages/Home/home"
@@ -12,7 +12,7 @@ import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getDatabase, ref, push, get} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 function App() {
 
@@ -24,7 +24,19 @@ function App() {
   const database = getDatabase(app)
   const reference = ref(database, 'UserData')
 
-  const [profilePic, setProfilePic] = React.useState('')
+  const [userData, setUserData] = useState({
+      name: '',
+      password: '', 
+      email: '',
+      profilePic: '',
+      dateOfBirth: '',
+      phoneNumber: '', 
+      age: ''
+    })
+  const [userValidity, setUserValidity] = useState({email: '', password: ''})
+  const [notFound, setNotFound] = useState(false)
+  const [loadingState, setLoadingState] = useState(false)
+  const [updatedProfilePic, setUpdatedProfilePic] = useState('')
 
   const router = createBrowserRouter([
     {
@@ -80,12 +92,23 @@ function App() {
         initializeApp,
         getDatabase,
         ref,
+        update,
         push,
         get,
+        onValue,
         firebaseConfig,
         reference,
-        profilePic,
-        setProfilePic
+        userData,
+        setUserData,
+        userValidity,
+        setUserValidity,
+        notFound,
+        setNotFound,
+        loadingState,
+        setLoadingState,
+        database,
+        updatedProfilePic,
+        setUpdatedProfilePic
       }}>
       <RouterProvider router={router} />
       </User.Provider>

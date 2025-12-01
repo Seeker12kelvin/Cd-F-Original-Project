@@ -14,29 +14,18 @@ import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
 
 const SignUp = () => {
-  const {push, reference, get, profilePic } = useContext(User)
-  
-  const [userData, setUserData] = useState(
-    { name: '',
-      password: '', 
-      email: '', 
-      profilePic: profilePic, 
-      dateOfBirth: '',
-      phoneNumber: '', 
-      age: ''
-    }
-  )
+  const {push, reference, get, userData, setUserData,  } = useContext(User)
   const [found, setFound] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setUserData(
-      {
+      {...userData,
         name: e.target.elements.name.value,
         password: e.target.elements.password.value,
         email: e.target.elements.email.value,
-        profilePic: profilePic,
+        profilePic: '',
         dateOfBirth: '',
         phoneNumber: '',
         age: ''

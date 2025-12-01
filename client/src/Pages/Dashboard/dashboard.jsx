@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import "./dashboard.module.css"
 import { FaDotCircle } from 'react-icons/fa';
 import { CiMenuBurger, CiMenuFries, CiMenuKebab } from 'react-icons/ci';
@@ -7,7 +7,7 @@ import User from '../../components/User';
 
 const Dashboard = () => {
 
-  const {setProfilePic, profilePic} = useContext(User)
+  const {userData, setUserData} = useContext(User)
   const location = useLocation()
   const { name } = location.state
 
@@ -20,19 +20,12 @@ const Dashboard = () => {
     { label: "Remaining", value: '$800' }
   ];
 
-    const handleInput = async (e) => {
+    const handleInput = (e) => {
       const file = e.target.files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setProfilePic(reader.result);
-      };
-
       if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        setProfilePic('');
-      }
+      const imageUrl = URL.createObjectURL(file);
+      setUserData({...userData, profilePic: imageUrl});
+    }
   }
 
   return (
@@ -94,8 +87,8 @@ const Dashboard = () => {
             </div>
 
             <div className='flex flex-col items-center'>
-              {profilePic ? 
-              <img src={profilePic} 
+              {userData.profilePic ? 
+              <img src={userData.profilePic} 
                 className='w-30 h-30 object-cover rounded-full'
                 alt='user profile picture'/> 
               : 

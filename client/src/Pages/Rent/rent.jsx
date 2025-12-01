@@ -2,6 +2,8 @@ import React from 'react';
 import './rent.module.css';
 import properDetails from '../../data/data.js';
 import Squares from "../../Images/Square-Meters-Outline.png";
+import { favoriteDetails } from '../../data/data.js';
+import FavoriteButton from '../../components/favoriteFunction.jsx';
 import { FaBath} from 'react-icons/fa';
 import { FaBed } from 'react-icons/fa';
 import { CiHeart } from 'react-icons/ci';
@@ -80,8 +82,23 @@ const Rent = () => {
                       <h3 className='font-bold text-2xl'>{data.name}</h3>
                       <p className='text-[#6C727F] text-[0.86em]'>{data.location}</p>
                     </div>
-                    <div className='border-2 border-[#F0EFFB] p-1 -mt-10 rounded-[50%] w-fit'>
-                      <CiHeart className='text-[#7065F0] text-2xl '/>
+                    <div className='border-2 border-[#F0EFFB] flex items-center p-1.5 -mt-10 rounded-[50%] w-fit'>
+                      <FavoriteButton
+                        className=''
+                        isFavorite={favoriteDetails.some(item => item.id === data.id)}
+                        onToggle={() => {
+                          if (favoriteDetails.some(item => item.id === data.id)) {
+                            const index = favoriteDetails.findIndex(item => item.id === data.id);
+                            if (index > -1) {
+                              favoriteDetails.splice(index, 1);
+                            }
+                          } else {
+                            favoriteDetails.push(data);
+                            localStorage.setItem('favorites', JSON.stringify(favoriteDetails));
+                          }
+                        }}
+                        size={19}
+                      />
                     </div>
                   </div>
         
@@ -99,10 +116,10 @@ const Rent = () => {
                   <p>POPULAR</p>
                 </div>
         
-                <div 
+                <div
                   className='bg-[#5245ED] h-10 rotate-45 w-[100px] text-white text-sm rounded-xl rounded-bl-none p-2 flex gap-2 items-center absolute top-52 -left-[0.704rem]'>
                 </div></>: null}
-      
+
               </div>
             </Link>
           )

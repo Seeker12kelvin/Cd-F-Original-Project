@@ -1,0 +1,11 @@
+.select {
+  background-color: none;
+  border: 0.09375rem solid #E8E6F9;
+  border-radius: 0.75rem;
+  padding: 0.45rem;
+  font-size: 16px;
+}
+
+.first-select {
+  border-right: 0.09375rem solid #E8E6F9;
+}
