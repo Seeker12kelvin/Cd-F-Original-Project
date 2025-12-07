@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./home.module.css"
-import { useLocation, Outlet, NavLink } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import { IoCloseOutline } from "react-icons/io5";
 import Logo from "../../components/Logo"
 import { FaAngleDown, FaBell, FaSearch } from 'react-icons/fa';
+import User from '../../components/User';
 
 const Home = () => {
 
-  const userInfo = useLocation()
-  const { name, email, profilePic } = userInfo.state
+  const { userData } = useContext(User)
+  const name = userData.name
+
   const [remove, setRemove] = useState(false)
 
   const [searchFilter, setSearchFilter] = useState(null)
@@ -42,9 +44,9 @@ const Home = () => {
         <div className='flex items-center h-full gap-15'>
           <Logo />
           <ul className='flex items-center h-full gap-12'>
-            <NavLink to={''} end state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
-            <NavLink to='applications' state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
-            <NavLink to='favorite' state={{name, email, firstName, lastName, profilePic}} style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
+            <NavLink to={''} end style={({isActive}) => isActive ? styleLists : null}>Dashboard</NavLink>
+            <NavLink to='applications' style={({isActive}) => isActive ? styleLists : null}>Applications</NavLink>
+            <NavLink to='favorite' style={({isActive}) => isActive ? styleLists : null}>Favorited</NavLink>
           </ul>
         </div>
 

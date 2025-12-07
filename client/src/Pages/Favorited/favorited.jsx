@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from "./favorite.module.css"
 import FavoriteButton from '../../components/favoriteFunction.jsx'
 import { FaBed, FaList, FaTrash } from 'react-icons/fa';
@@ -7,11 +7,11 @@ import { FaBath } from 'react-icons/fa';
 import Squares from "../../Images/Square-Meters-Outline.png";
 import { FaStarOfLife } from 'react-icons/fa';
 import { BsFillGridFill } from "react-icons/bs";
+import User from '../../components/User.jsx';
 
 const Favorite = () => {
-
-  const { name } = useLocation().state
-
+  const { userData } = React.useContext(User)
+  const name = userData.name
   const [gridView, setGridView] = React.useState(true);
   const favoriteItems = JSON.parse(localStorage.getItem('favorites')) || [];
 

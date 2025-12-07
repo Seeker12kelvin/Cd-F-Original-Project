@@ -30,48 +30,34 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setUserValidity({email: e.target.elements.email.value, password: e.target.elements.password.value})
+    setUserValidity({...userValidity, email: e.target.elements.email.value, password: e.target.elements.password.value})
   }
 
   useEffect(() => {
-    !userValidity.email && !userValidity.password ? null
-    :
+    if(!userValidity.email || !userValidity.password){
+      return
+    }
+    
     onValue(reference, snapshot => {
       const data = snapshot.val()
       const userValue = Object.values(data)
       const found = userValue.find(val => val.email === userValidity.email && val.password === userValidity.password)
       if(found){
         setLoadingState(true)
+        loadingState ? navigate('/home'): null
+        setUserData(...userData, ...found)
 
         setTimeout(() => {
-          navigate('/home', {state: {
-            email: found.email, 
-            password: found.password, 
-            profilePic: found.profilePic, 
-            name: found.name, 
-            dateOfBirth: found.dateOfBirth, 
-            phoneNumber: found.phoneNumber, 
-            age: found.age
-          }})
-
           setLoadingState(false)
-
-          setUserData({...userData,
-            email: found.email, 
-            password: found.password, 
-            profilePic: found.profilePic, 
-            name: found.name, 
-            dateOfBirth: found.dateOfBirth, 
-            phoneNumber: found.phoneNumber, 
-            age: found.age
-          })
-
         }, 3000)
+
+        setUserData({...userData, ...found})
 
       }else {
         setNotFound(prev => !prev)
       }
     })
+
   }, [userValidity])
 
   const handleLoading = () => {
@@ -86,13 +72,13 @@ const Login = () => {
 
   return (
     <>
-      {!loadingState ?
       <div className='flex justify-between h-screen'>
         <div className='w-[50%] flex flex-col gap-10 items-center h-full'>
           <div className='h-[10%] border border-[#E0DEF7] justify-self-start w-full flex pl-15'>
             <Logo className='self-center justify-self-start'/>
           </div>
 
+          {!loadingState ?
           <form onSubmit={handleSubmit} className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
             <div>
               <h1 className='text-[32px] font-bold'>Welcome back</h1>
@@ -142,7 +128,7 @@ const Login = () => {
 
 
             <p className='text-[#0009297d] text-center'>Don't have an account? <Link to='/sign-up' className='font-bold text-black underline'>Sign up for free</Link></p>
-          </form>
+          </form> : handleLoading() }
         </div>
 
         <div className='w-[50%] h-full bg-[#F7F7FD] relative flex flex-col'>
@@ -204,7 +190,6 @@ const Login = () => {
         </div>
 
       </div>
-      : handleLoading()}
       
     </>
   )

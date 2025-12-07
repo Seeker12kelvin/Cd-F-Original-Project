@@ -14,45 +14,46 @@ import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
 
 const SignUp = () => {
-  const {push, reference, get, userData, setUserData,  } = useContext(User)
+  const {push, reference, onValue, updatedProfilePic, userData, setUserData } = useContext(User)
+  
   const [found, setFound] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setUserData(
-      {...userData,
+    setUserData(prev => (
+      { ...prev,
         name: e.target.elements.name.value,
         password: e.target.elements.password.value,
         email: e.target.elements.email.value,
-        profilePic: '',
+        profilePic: updatedProfilePic,
         dateOfBirth: '',
         phoneNumber: '',
         age: ''
-      })
+      }))
   }
   
   useEffect(() => {
-      if (!userData.email || !userData.password) return;
+    if (!userData.email || !userData.password) return;
 
-      get(reference).then(snapshot => {
-        const data = snapshot.val() || {};
-        const userValue = Object.values(data);
-        
-        const foundUser = userValue.find(
-          val => val.email === userData.email && val.password === userData.password
-        );
+    onValue(reference, snapshot => {
+      const data = snapshot.val() || {};
+      const userValue = Object.values(data);
+      
+      const foundUser = userValue.find(
+        val => val.email === userData.email && val.password === userData.password
+      );
 
-        if (foundUser) {
-          setFound(true);
-          navigate('/login');
-        } else {
-          const newUserRef = push(reference, userData);
-          localStorage.setItem("currentUserId", newUserRef.key);
-          navigate('/login');
-        }
-      });
-  }, [userData])
+      if (foundUser) {
+        setFound(true);
+        navigate('/login');
+      } else {
+        const newUserRef = push(reference, userData);
+        localStorage.setItem("currentUserId", newUserRef.key);
+        navigate('/home');
+      }
+    })
+  }, [userData]);
 
   return (
     <div className='flex justify-between h-screen'>
@@ -123,6 +124,7 @@ const SignUp = () => {
           
 
           <button 
+            disabled
             className='bg-none border-[#D6DDEB] border flex items-center justify-center gap-2 font-bold'>
             <FaGoogle className='text-xl' />
             Sign up with Google

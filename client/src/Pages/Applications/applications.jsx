@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styles from "./application.module.css"
 import { FaAngleDown, FaCalendar, FaCalendarAlt, FaCheckCircle, FaDotCircle, FaFilePdf, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
 import { FaRegAddressBook } from "react-icons/fa6";
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import properDetails from '../../data/data';
 import User from '../../components/User';
 
@@ -12,7 +12,8 @@ const Applications = () => {
     userData,
     setUserData
    } = useContext(User)
-  const { name, email } = useLocation().state
+  const email = userData.email
+  const name = userData.name
 
   const firstName = name.split(' ')[0]
   const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
@@ -75,28 +76,7 @@ const Applications = () => {
             </div>
 
             <div className={`w-full h-[932px] flex flex-col gap-4 text-[1em] overflow-scroll ${styles["no-scrollbar"]}`}>
-              {!filteredProperties ? properDetails.map(data => {
-                return(
-                  <Link key={data.id} to={`/rent/${data.id}`} className='active:bg-[#F0EFFB]'>
-                    <div className='flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]'>
-                      <p>{data.boughtItemdate}</p>
-
-                      <div className='flex gap-4 self-center'>
-                        <img className='h-14 object-cover w-20 rounded-xl' src={data.imgUrl} alt={`${data.name}`}/>
-                        <div>
-                          <p className='font-bold'>{data.name}</p>
-                          <p className='flex items-center gap-2 text-[#6C727F]'>{data.userName} <div className='w-1 h-1 rounded-full bg-[#9EA3AE]'></div> {data.location}</p>
-                        </div>
-                      </div>
-
-                      <button
-                        className='border-[0.09375rem] border-[0.09375rem]-[#E0DEF7] items-center flex gap-2 rounded-xl p-2 pr-4 pl-4'><FaRegAddressBook />
-                        View detail
-                      </button>
-                    </div>
-                  </Link>
-                )
-              }) : filteredProperties.map(filteredData => {
+              {filteredProperties.map(filteredData => {
                 return(
                   <Link key={filteredData.id} to={`/rent/${filteredData.id}`} className='active:bg-[#F0EFFB]'>
                     <div className='flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]'>
@@ -153,7 +133,8 @@ const Applications = () => {
               <input
                 value={userData.dateOfBirth}
                 onChange={(e) => setUserData({...userData, dateOfBirth: e.target.value})} 
-                className={`${styles['app-input']}text-[#000929]'`} type="date" /></p>
+                className={`${styles['app-input']}text-[#000929]'`} type="text" /></p>
+                {/* for testing, leave the type as text for now. Change Later on. */}
             <p className='w-full text-[#00092953] flex justify-between items-center border-b border-[#E0DEF7] pb-5'>Age 
               <input
                 value={userData.age}
@@ -181,7 +162,7 @@ const Applications = () => {
             <h2 className='text-lg font-bold'>Personal Reference</h2>
             <p className='text-[1em]'>"He always pays rent on time"</p>
             <div className='flex items-center gap-4'>
-              <img src={userData.rofilePic}
+              <img src={userData.profilePic}
               className='w-15 h-15 object-cover rounded-full float-left'
               alt='user profile picture'/>
               <div className='flex flex-col'>

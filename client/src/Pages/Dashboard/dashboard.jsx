@@ -2,14 +2,12 @@ import React, { useContext } from 'react'
 import "./dashboard.module.css"
 import { FaDotCircle } from 'react-icons/fa';
 import { CiMenuBurger, CiMenuFries, CiMenuKebab } from 'react-icons/ci';
-import { useLocation } from 'react-router-dom';
 import User from '../../components/User';
 
 const Dashboard = () => {
 
   const {userData, setUserData} = useContext(User)
-  const location = useLocation()
-  const { name } = location.state
+  const name = userData.name
 
   const firstName = name.split(' ')[0]
   const lastName = name.split('') === 1 ? name.split(' ')[1]: name.split('') === 3 ? name.split('')[2]: name.split(' ')[2]
@@ -20,9 +18,9 @@ const Dashboard = () => {
     { label: "Remaining", value: '$800' }
   ];
 
-    const handleInput = (e) => {
-      const file = e.target.files[0];
-      if (file) {
+  const handleInput = (e) => {
+    const file = e.target.files[0];
+    if (file) {
       const imageUrl = URL.createObjectURL(file);
       setUserData({...userData, profilePic: imageUrl});
     }

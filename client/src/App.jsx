@@ -11,13 +11,14 @@ import Dashboard from "./Pages/Dashboard/dashboard";
 import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import UpdateUserInfo from "./components/UpdateUserInfo";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
 function App() {
 
   const firebaseConfig = {
-    databaseURL: "https://comm-2eb25-default-rtdb.firebaseio.com/"
+    databaseURL: "https://estatery-ebaec-default-rtdb.firebaseio.com"
   }
 
   const app = initializeApp(firebaseConfig)
@@ -26,11 +27,11 @@ function App() {
 
   const [userData, setUserData] = useState({
       name: '',
-      password: '', 
+      password: '',
       email: '',
       profilePic: '',
       dateOfBirth: '',
-      phoneNumber: '', 
+      phoneNumber: '',
       age: ''
     })
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
@@ -110,6 +111,7 @@ function App() {
         updatedProfilePic,
         setUpdatedProfilePic
       }}>
+      <UpdateUserInfo />
       <RouterProvider router={router} />
       </User.Provider>
     </>
