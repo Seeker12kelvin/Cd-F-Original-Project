@@ -14,6 +14,10 @@ import User from "./components/User";
 import UpdateUserInfo from "./components/UpdateUserInfo";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import SignUpLoginLayout from "./components/signUpLoginLayout";
+import TenancyApplicationsPage from "./Pages/Tenancy Applications/tenancyApplicationsPage";
+import PersonalApplications from "./Pages/Personal Application/personalApplications";
+import EmploymentApplications from "./Pages/Employment Application/EmploymentApplications";
 
 function App() {
 
@@ -26,7 +30,7 @@ function App() {
   const reference = ref(database, 'UserData')
 
   const [userData, setUserData] = useState({
-      name: '',
+      name: 'Kelvin Tamaramiepayefa Donye',
       password: '',
       email: '',
       profilePic: '',
@@ -34,6 +38,8 @@ function App() {
       phoneNumber: '',
       age: ''
     })
+
+  const [userLogged, setUserLogged] = useState(false)
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
   const [notFound, setNotFound] = useState(false)
   const [loadingState, setLoadingState] = useState(false)
@@ -78,12 +84,32 @@ function App() {
       ]
     },
     {
-      path: '/sign-up',
-      element:<SignUp />
+      path: '/signUp&login',
+      element: <SignUpLoginLayout />,
+      children: [
+        {
+          path: 'sign-up',
+          element:<SignUp />
+        },
+        {
+          path: 'login',
+          element:<Login />
+        }
+      ]
     },
     {
-      path: '/login',
-      element:<Login />
+      path: '/tenancy-applications/:id',
+      element: <TenancyApplicationsPage />,
+      children: [
+        {
+          index: true,
+          element: <PersonalApplications />
+        },
+        {
+          path: 'employment-status',
+          element: <EmploymentApplications />
+        }
+      ]
     }
   ])
 
@@ -109,10 +135,12 @@ function App() {
         setLoadingState,
         database,
         updatedProfilePic,
-        setUpdatedProfilePic
+        setUpdatedProfilePic,
+        userLogged,
+        setUserLogged
       }}>
-      <UpdateUserInfo />
-      <RouterProvider router={router} />
+        <UpdateUserInfo />
+        <RouterProvider router={router} />
       </User.Provider>
     </>
   )

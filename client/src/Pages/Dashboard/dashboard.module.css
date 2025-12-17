@@ -1,0 +1,7 @@
+.circle-list {
+  list-style: square;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb{
+  background-color: #7065F0;
+}

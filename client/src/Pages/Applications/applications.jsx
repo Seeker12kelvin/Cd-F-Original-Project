@@ -22,7 +22,7 @@ const Applications = () => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setUserData({...userData, profilePic: imageUrl});
+      setUserData(prev => ({...prev, profilePic: imageUrl}));
     }
   }
   
@@ -31,7 +31,7 @@ const Applications = () => {
     const filtered = properDetails.filter((property) =>
       property.name.toLowerCase().includes(searchValue.toLowerCase()) ||
       property.location.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    )
     setFilteredProperties(filtered);
   }
 
@@ -76,28 +76,29 @@ const Applications = () => {
             </div>
 
             <div className={`w-full h-[932px] flex flex-col gap-4 text-[1em] overflow-scroll ${styles["no-scrollbar"]}`}>
-              {filteredProperties.map(filteredData => {
-                return(
-                  <Link key={filteredData.id} to={`/rent/${filteredData.id}`} className='active:bg-[#F0EFFB]'>
-                    <div className='flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]'>
-                      <p>{filteredData.boughtItemdate}</p>
+              {filteredProperties.length > 0 ?
+                filteredProperties.map(filteredData => {
+                  return(
+                    <Link key={filteredData.id} to={`/rent/${filteredData.id}`} className='active:bg-[#F0EFFB]'>
+                      <div className={`${styles['onLoad-animation']} flex gap-4 p-4 justify-between pb-5 items-center border-b-2 border-[#E0DEF7]`}>
+                        <p>{filteredData.boughtItemdate}</p>
 
-                      <div className='flex gap-4 self-center'>
-                        <img className='h-14 object-cover w-20 rounded-xl' src={filteredData.imgUrl} alt={`${filteredData.name}`}/>
-                        <div>
-                          <p className='font-bold'>{filteredData.name}</p>
-                          <p className='flex items-center gap-2 text-[#6C727F]'>{filteredData.userName} <div className='w-1 h-1 rounded-full bg-[#9EA3AE]'></div> {filteredData.location}</p>
+                        <div className='flex gap-4 self-center'>
+                          <img className='h-14 object-cover w-20 rounded-xl' src={filteredData.imgUrl} alt={`${filteredData.name}`}/>
+                          <div>
+                            <p className='font-bold'>{filteredData.name}</p>
+                            <p className='flex items-center gap-2 text-[#6C727F]'>{filteredData.userName} <div className='w-1 h-1 rounded-full bg-[#9EA3AE]'></div> {filteredData.location}</p>
+                          </div>
                         </div>
-                      </div>
 
-                      <button
-                        className='border-[0.09375rem] border-[0.09375rem]-[#E0DEF7] items-center flex gap-2 rounded-xl p-2 pr-4 pl-4'><FaRegAddressBook />
-                        View detail
-                      </button>
-                    </div>
-                  </Link>
-                )
-              })}
+                        <button
+                          className='border-[0.09375rem] border-[0.09375rem]-[#E0DEF7] items-center flex gap-2 rounded-xl p-2 pr-4 pl-4'><FaRegAddressBook />
+                          View detail
+                        </button>
+                      </div>
+                    </Link>
+                  )
+              }): <p>Not found...</p>}
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const FavoriteButton = ({
   isFavorite = false,
   onToggle = () => {},
   size = 22,
   activeColor = "#FF4C4C",
-  inactiveColor = "#D3D3D3",
+  inactiveColor = "#7065F0",
   className = "",
 }) => {
   return (
@@ -16,6 +16,7 @@ const FavoriteButton = ({
     >
       <FaHeart
         size={size}
+        style={{color: isFavorite ? activeColor : inactiveColor}}
         color={isFavorite ? activeColor : inactiveColor}
       />
     </button>

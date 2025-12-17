@@ -61,18 +61,14 @@ const UpdateUserInfo = () => {
         if (userObj.profilePic !== userData.profilePic) {
           update(
             ref(database, `UserData/${userKey}`),
-            { profilePic: userData.profilePic,
-              age: userData.age,
-              phoneNumber: userData.phoneNumber,
-              dateOfBirth: userData.dateOfBirth
-             }
+            { profilePic: userData.profilePic }
           );
         }
       }
     });
 
     return () => unsubscribe(); // Cleanup the listener on unmount
-  }, [userData.profilePic, userValidity.email, userValidity.password]);
+  }, [userData]);
 
   return null; // This component does not render anything
 };

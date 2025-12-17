@@ -76,13 +76,14 @@ const Rent = () => {
       </div>
 
       <div className='flex justify-center h-full w-[88.5%] flex-wrap gap-8'>
-        {filteredProperties.map(data => {
+        {filteredProperties.length > 0 ?
+          filteredProperties.map(data => {
             return (
               <Link key={data.id} to={`/rent/${data.id}`}>
                 <div
                   className={`${styles['onLoad-animation']} bg-white w-[330px] h-fit relative shadow-xl shadow-[#00000010] rounded-2xl border-[#D6DDEB] border-2 flex flex-col`}>
         
-                  <img className='object-cover rounded-xl rounded-b-none z-3 bg-[white] h-fit' src={data.imgUrl} alt={data.name}/>
+                  <img className='object-cover rounded-xl rounded-b-none z-3 bg-[white] h-48' src={data.imgUrl} alt={data.name}/>
 
                   <div className='bg-white h-full w-full z-3 flex rounded-b-2xl gap-4 flex-col p-6'>
         
@@ -135,7 +136,7 @@ const Rent = () => {
               </Link>
             )
           })
-        }
+        :<p>Not found...</p>}
       </div>
 
       <div className='flex items-center gap-4'>

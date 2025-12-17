@@ -10,7 +10,6 @@ import { FaBath, FaBed, FaKey, FaReadme, FaSearch, FaStarOfLife, FaVideo } from 
 import properDetails, { favoriteDetails } from '../../data/data';
 import FavoriteButton from '../../components/favoriteFunction';
 import { FaHouseCircleCheck } from 'react-icons/fa6';
-import landingImage1 from '../../Images/landing-image.png';
 
 const LandingPage = () => {
 
@@ -68,41 +67,36 @@ const LandingPage = () => {
 
   return (
     <div>
-      <section className={`${styles['onLoad-animation']} w-full h-screen bg-linear-to-b from-[#E0DEF7] to-[#e0def700] pl-15 flex justify-center items-center gap-6 `}>
-        <div id='main-container' className='flex flex-row flex-1 gap-8 mt-70 pr-0'>
-          <div className='flex flex-col gap-10'>
-            <div className='flex flex-col gap-4 items-left leading-16 text-[#000929] w-136'>
-              <h1 className='text-[4rem] font-bold'>Buy, rent, or sell your property easily</h1>
-              <p className='text-xl'>A great platform to buy, sell, or even rent your properties without any commisions.</p>
-            </div>
-            <div className=''>
-              <div className='bg-white flex w-74 rounded-t-xl shadow-2xl shadow-[#00000024]'>
-                <button className={`p-5 pb-3 w-full ${active ? 'border-b-4 border-[#7065F0] text-[#7065F0]': ''}`}>Rent</button>
-                <button className='p-5 w-full'>Buy</button>
-                <button className='p-5 w-full'>Sell</button>
-              </div>
-              <div className='flex justify-between gap-10 bg-white w-fit p-4 rounded-b-xl rounded-tr-xl shadow-2xl shadow-[#00000024]'>
-                <ul className='flex items-center gap-10'>
-                  <li className='text-[#001619B2] flex flex-col pr-10 justify-center border-r-[0.09375rem] border-[#E0DEF7]'>Location <span className='text-[#000929] text-lg'>Barcelona, Spain</span></li>
-                  <li className='text-[#001619B2] flex flex-col pr-10 justify-center border-r-[0.09375rem] border-[#E0DEF7]'>When <span className='text-[#000929] text-lg'>Select Move-in Date</span></li>
-                </ul>
-                <button className='bg-[#7065F0] text-[white] p-4 pl-6 pr-6 rounded-xl'>Browse Properties</button>
-              </div>
-            </div>
+      <section className={`${styles['onLoad-animation']} w-full h-screen bg-linear-to-b from-[#E0DEF7] to-[#e0def700] pl-10 flex justify-center items-center gap-6 `}>
+        <div className='flex flex-col gap-10'>
+          <div className='flex flex-col gap-4 items-left leading-16 text-[#000929] w-136'>
+            <h1 className='text-[4rem] font-bold'>Buy, rent, or sell your property easily</h1>
+            <p className='text-xl'>A great platform to buy, sell, or even rent your properties without any commisions.</p>
           </div>
-          <div className='w-full pl-70'>
-            <img src={landingImage1}/>
+          <div className=''>
+            <div className='bg-white flex w-74 rounded-t-xl shadow-2xl shadow-[#00000024]'>
+              <button className={`p-5 pb-3 w-full ${active ? 'border-b-4 border-[#7065F0] text-[#7065F0]': ''}`}>Rent</button>
+              <button className='p-5 w-full'>Buy</button>
+              <button className='p-5 w-full'>Sell</button>
+            </div>
+            <div className='flex justify-between gap-10 bg-white w-fit p-4 rounded-b-xl rounded-tr-xl shadow-2xl shadow-[#00000024]'>
+              <ul className='flex items-center gap-10'>
+                <li className='text-[#001619B2] flex flex-col pr-10 justify-center border-r-[0.09375rem] border-[#E0DEF7]'>Location <span className='text-[#000929] text-lg'>Barcelona, Spain</span></li>
+                <li className='text-[#001619B2] flex flex-col pr-10 justify-center border-r-[0.09375rem] border-[#E0DEF7]'>When <span className='text-[#000929] text-lg'>Select Move-in Date</span></li>
+              </ul>
+              <Link to={'/rent'} className='bg-[#7065F0] text-[white] p-4 pl-6 pr-6 rounded-xl'>Browse Properties</Link>
+            </div>
           </div>
         </div>
 
-        <div className='absolute ml-45 text-[#000929] bg-[white] p-4 rounded-xl shadow-2xl shadow-[#00000024] w-80 flex flex-col gap-6'>
+        <div className='text-[#000929] bg-[white] p-5 rounded-xl shadow-2xl shadow-[#00000024] w-67 flex flex-col gap-6'>
           <div className='flex flex-col gap-4 border-b-2 border-[#E0DEF7] pb-6'>
             <div className='flex gap-2 items-center'>
               <img className='w-18 h-18 rounded-full object-cover' src={PastBuyer} alt="Past Buyer" />
               <div className='text-xs leading-6'>
                 <h1 className='text-[#000929] text-[1.2em] font-bold'>Manuel Villa</h1>
                 <p>Renter</p>
-                <div className='flex items-center w-fit'><span>Moved with</span>  <Logo scale={'65'}/></div>
+                <div className='flex items-center w-fit'><span>Moved with</span> <Logo scale={'70'}/></div>
               </div>
             </div>
 
@@ -152,7 +146,8 @@ const LandingPage = () => {
         </div>
 
         <div className={`${styles['no-scrollbar']} flex justify-start gap-6 w-full flex-wrap h-200 overflow-hidden mb-10`}>
-          {filteredProperties.map(data => {
+          {filteredProperties.length > 0 ?
+            filteredProperties.map(data => {
               return (
                 <Link key={data.id} to={`/rent/${data.id}`}>
                   <div
@@ -210,7 +205,7 @@ const LandingPage = () => {
                 </Link>
               )
             })
-          }
+          : <p>Not found...</p>}
         </div>
         <Link to={'/rent'} className='bg-[#100A55] p-2 text-white rounded-lg pl-6 pr-6'>Browse more properties</Link>
       </section>
