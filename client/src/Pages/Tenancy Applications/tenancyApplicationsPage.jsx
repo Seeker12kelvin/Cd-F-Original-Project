@@ -64,13 +64,13 @@ const TenancyApplicationsPage = () => {
         <h1 className='text-[#000929] text-[2.5rem] font-bold text-center'>Tenancy Applications</h1>
 
         <ul className='flex items-center gap-4'>
-          {steps.map(data => {
+          {steps.map((data) => {
             return(
-              <NavLink style={({isActive}) => isActive ? styles : null} to={data.link} className='flex gap-2 items-center text-[1rem]'>
-                <span className='bg-[#F0EFFB] rounded-full pl-2 pr-2 h-fit'>{data.id}</span> 
+              <li key={data.id} to={data.link} className='flex gap-2 items-center text-[1rem]'>
+                <NavLink style={({isActive}) => isActive ? styles : null} className='bg-[#F0EFFB] rounded-full pl-2 pr-2 h-fit'>{data.id}</NavLink>
                 {data.step}
                 <span className='text-lg'>{data.icon}</span>
-              </NavLink>
+              </li>
             )
           })}
         </ul>
