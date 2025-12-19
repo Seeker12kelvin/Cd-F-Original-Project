@@ -6,7 +6,7 @@ import Header from "./components/Header/header";
 import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
 import Rent from "./Pages/Rent/rent";
-import RentDetails from "./Pages/Rent//Rent Details/rentDetails";
+import RentDetails from "./Pages/Rent/Rent-Details/rentDetails";
 import Dashboard from "./Pages/Dashboard/dashboard";
 import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
@@ -15,9 +15,9 @@ import UpdateUserInfo from "./components/UpdateUserInfo";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 import SignUpLoginLayout from "./components/signUpLoginLayout";
-import TenancyApplicationsPage from "./Pages/Tenancy Applications/tenancyApplicationsPage";
-import PersonalApplications from "./Pages/Personal Application/personalApplications";
-import EmploymentApplications from "./Pages/Employment Application/EmploymentApplications";
+import TenancyApplicationsPage from "./Pages/Tenancy-Applications/tenancyApplicationsPage";
+import PersonalApplications from "./Pages/Personal-Application/personalApplications";
+import EmploymentApplications from "./Pages/Employment-Application/employmentApplications";
 import {APIProvider} from '@vis.gl/react-google-maps';
 
 function App() {

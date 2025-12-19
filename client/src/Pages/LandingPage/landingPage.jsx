@@ -67,8 +67,8 @@ const LandingPage = () => {
   ]
 
   return (
-    <div className='max-sm:overflow-hidden max-sm:w-screen max-sm:min-h-screen'>
-      <section className={`${styles['onLoad-animation']} w-screen h-screen bg-linear-to-b from-[#E0DEF7] to-[#e0def700] pl-15 flex justify-center items-center gap-6 max-sm:pl-0 max-sm:`}>
+    <div className='overflow-x-hidden w-screen max-sm:border'>
+      <section className={`${styles['onLoad-animation']} w-full min-h-screen px-4 sm:px-10 lg:px-20 bg-linear-to-b from-[#E0DEF7] to-[#e0def700]  flex justify-center items-center gap-6 max-sm:pl-0 max-sm:`}>
         <div id='main-container' className='flex flex-row flex-1 gap-8 mt-70 pr-0 max-sm:mt-0'>
           <div className='flex flex-col gap-10 max-sm:items-center max-sm:justify-start '>
             <div className='flex flex-col gap-4 items-left leading-16 text-[#000929] w-136 max-sm:text-center max-sm:w-[80%] max-sm:-mt-20
@@ -122,7 +122,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className='max-sm:flex max-sm:justify-center'>
+      <section className='max-sm:flex max-sm:justify-center max-sm:w-full'>
         <div className='bg-[#F7F7FD] border-[0.09375rem] border-[#E0DEF7] w-fit rounded-xl p-5 flex flex-col gap-10'>
           <div>
             <h2 className='text-2xl'>The new way to find your new home</h2>
@@ -133,7 +133,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className='max-sm:p-5 max-sm:pt-30 max-sm:leading-12 max-sm:w-[97%] p-50 pt-30 pb-30 leading-7 flex flex-col items-center bg-linear-to-b from-[#FFFFFF] to-[#F0EFFB]'>
+      <section className='max-sm:p-5 max-sm:pt-30 max-sm:leading-12 max-sm:w-full p-50 pt-30 pb-30 leading-7 flex flex-col items-center bg-linear-to-b from-[#FFFFFF] to-[#F0EFFB]'>
         <div className='text-center mb-15'>
           <h1 className='text-[2.5rem] text-[#001619] font-bold mb-4'>Based on your location</h1>
           <p className='text-[#0009297c] text-[1rem] max-sm:leading-6'>Some our picked properties near your location.</p>
