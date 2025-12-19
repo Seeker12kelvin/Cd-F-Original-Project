@@ -18,6 +18,7 @@ import SignUpLoginLayout from "./components/signUpLoginLayout";
 import TenancyApplicationsPage from "./Pages/Tenancy Applications/tenancyApplicationsPage";
 import PersonalApplications from "./Pages/Personal Application/personalApplications";
 import EmploymentApplications from "./Pages/Employment Application/EmploymentApplications";
+import {APIProvider} from '@vis.gl/react-google-maps';
 
 function App() {
 
@@ -30,14 +31,14 @@ function App() {
   const reference = ref(database, 'UserData')
 
   const [userData, setUserData] = useState({
-      name: 'Kelvin Tamaramiepayefa Donye',
-      password: '',
-      email: '',
-      profilePic: '',
-      dateOfBirth: '',
-      phoneNumber: '',
-      age: ''
-    })
+    name: '',
+    password: '',
+    email: '',
+    profilePic: '',
+    dateOfBirth: '',
+    phoneNumber: '',
+    age: ''
+  })
 
   const [userLogged, setUserLogged] = useState(false)
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
@@ -140,7 +141,9 @@ function App() {
         setUserLogged
       }}>
         <UpdateUserInfo />
-        <RouterProvider router={router} />
+        <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>
+          <RouterProvider router={router} />
+        </APIProvider>
       </User.Provider>
     </>
   )

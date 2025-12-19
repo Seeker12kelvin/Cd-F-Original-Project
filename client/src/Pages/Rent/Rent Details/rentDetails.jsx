@@ -2,10 +2,12 @@ import React, { useMemo } from 'react';
 import styles from "./rentDetails.module.css";
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import properDetails from '../../../data/data';
-import { FaBath, FaBed, FaCheckCircle, FaHome, FaLessThan, FaMapMarker, FaPaintBrush, FaQuestionCircle, FaReadme, FaSearch, FaSquare, FaStarOfLife, FaVideo } from 'react-icons/fa';
+import { FaBath, FaBed, FaCheckCircle, FaGreaterThan, FaHome, FaLessThan, FaMapMarker, FaPaintBrush, FaQuestionCircle, FaReadme, FaSearch, FaSquare, FaStarOfLife, FaVideo } from 'react-icons/fa';
 import { CiHeart, CiShare2 } from 'react-icons/ci';
 import Owner from "../../../Images/ListingOwner.png";
 import Squares from "../../../Images/Square-Meters-Outline.png";
+import {Map} from '@vis.gl/react-google-maps';
+import PoiMarkers from '../../../components/PoiMakers';
 
 const RentDetails = () => {
 
@@ -152,6 +154,23 @@ const RentDetails = () => {
               </div>
             </section>
 
+            <div style={{ width: "100%", height: "400px", margin: 'none'}}>
+              <Map
+                style={{ width: "100%", height: "100%" }}
+                defaultZoom={13}
+                defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
+                mapId={`64c959856ed0188a804d4ff1`}
+              >
+                <PoiMarkers />
+              </Map>
+            </div>
+
+            <Link className='flex items-center gap-2 text-[#7065F0] -mt-5 -mb-5'>See more listings in Houston <FaGreaterThan className='text-xs' /></Link>
+
+            <hr className='border-[#000929] opacity-10 -mb-5' />
+            
+            <p className='opacity-50 text-sm -mb-5'>You agree to Estatery's Terms of Use & Privacy Policy. By choosing to contact a property, you also agree that Estatery Group, landlords, and property managers may call or text you about any inquiries you submit through our services, which may involve use of automated means and prerecorded/artificial voices. You don't need to consent as a condition of renting any property, or buying any other goods or services. Message/data rates may apply.</p>
+
           </div>
 
           <aside id='price-box' className="h-fit w-[33%] p-6 border rounded-xl border-[#F0EFFB] flex flex-col gap-6">
@@ -233,7 +252,6 @@ const RentDetails = () => {
           ))}
         </div>
       </section>
-
     </div>
   )
 }

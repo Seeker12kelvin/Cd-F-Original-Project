@@ -6,7 +6,6 @@ import { FaAngleDown, FaBath, FaBed, FaBell, FaRegArrowAltCircleRight, FaRegBell
 import User from '../../components/User'
 import ProfileMenuBar from '../../components/ProfileMenuBar'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import properDetails from '../../data/data'
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const TenancyApplicationsPage = () => {
