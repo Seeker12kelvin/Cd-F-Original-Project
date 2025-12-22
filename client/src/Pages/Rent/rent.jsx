@@ -72,7 +72,7 @@ const Rent = () => {
         <ul className='flex gap-10 justify-self-center items-center'>
           {ulLists.map(data => <li className={`${ulListStyle.li}`}>{data.li} <span className={`${ulListStyle.span}`}>{data.span}</span></li>)}
         </ul>
-        <button className='bg-[#7065F0] text-white p-4 pl-8 pr-8 rounded-xl'>Search</button>
+        <Link to={'search'} className='bg-[#7065F0] text-white p-4 pl-8 pr-8 rounded-xl'>Search</Link>
       </div>
 
       <div className='flex justify-center h-full w-[88.5%] flex-wrap gap-8'>

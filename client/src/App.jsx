@@ -19,6 +19,7 @@ import TenancyApplicationsPage from "./Pages/Tenancy-Applications/tenancyApplica
 import PersonalApplications from "./Pages/Personal-Application/personalApplications";
 import EmploymentApplications from "./Pages/Employment-Application/employmentApplications";
 import {APIProvider} from '@vis.gl/react-google-maps';
+import RentSearch from "./Pages/Rent/Rent-Search/rentSearch";
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
   const reference = ref(database, 'UserData')
 
   const [userData, setUserData] = useState({
-    name: '',
+    name: 'Kelvin Tamaramiepayefa Donye',
     password: '',
     email: '',
     profilePic: '',
@@ -63,6 +64,10 @@ function App() {
         {
           path: 'rent/:id',
           element: <RentDetails />
+        },
+        {
+          path: 'rent/search',
+          element: <RentSearch />
         }
       ]
     },
