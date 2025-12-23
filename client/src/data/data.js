@@ -11,6 +11,7 @@ import Tarpon from "../Images/Tarpon Bay.png"
 const properDetails = [
   {
     id: '1',
+    category: 'House',
     imgUrl: Palm,
     price: "$2,095",
     name: "Palm Habor",
@@ -24,6 +25,7 @@ const properDetails = [
   },
   {
     id: '2',
+    category: 'House',
     imgUrl: Beverly,
     price: "$2,700",
     name: "Beverly Springfield",
@@ -37,6 +39,7 @@ const properDetails = [
   },
   {
     id: '3',
+    category: 'House',
     imgUrl: Faulker,
     price: "$4,550",
     name: "Faulkner Ave",
@@ -50,6 +53,7 @@ const properDetails = [
   },
   {
     id: '4',
+    category: 'House',
     imgUrl: Crystal,
     price: "$2,400",
     name: "St. Crystal",
@@ -63,6 +67,7 @@ const properDetails = [
   },
   {
     id: '5',
+    category: 'House',
     imgUrl: Cove,
     price: "$1,500",
     name: "Cove Red",
@@ -76,6 +81,7 @@ const properDetails = [
   },
   {
     id: '6',
+    category: 'House',
     imgUrl: Steele,
     price: "$1.600",
     name: "The Old Steele",
@@ -89,6 +95,7 @@ const properDetails = [
   },
   {
     id: '7',
+    category: 'House',
     imgUrl: CrystalTwo,
     price: "$2,400",
     name: "St. Crystal",
@@ -101,6 +108,7 @@ const properDetails = [
   },
   {
     id: '8',
+    category: 'House',
     imgUrl: CoveTwo,
     price: "$1,500",
     name: "Cove Red",
@@ -113,6 +121,7 @@ const properDetails = [
   },
   {
     id: '9',
+    category: 'House',
     imgUrl: Tarpon,
     price: "$1,600",
     name: "Tarpon Bay",

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaReadme, FaVideo } from 'react-icons/fa';
-import properDetails from '../../data/data';
 import { FaHouseCircleCheck } from 'react-icons/fa6';
 import HeroSection from './heroSection';
 import PropertyInfo from './Property/propertyInfo';
@@ -9,17 +8,8 @@ import CardInfo from './cardInfo';
 import LandlordInfo from './landlordInfo';
 
 const LandingPage = () => {
-  const [filteredProperties, setFilteredProperties] = useState(properDetails)
-  
-  const handleSearch = (searchValue) => {
-    const filtered = properDetails.filter((property) =>
-      property.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      property.location.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setFilteredProperties(filtered);
-  }
 
-  const sectionData = [
+  const [sectionData, setSectionData] = useState([
     {
       icon: <FaVideo className='w-full h-full' />,
       iconStyle: 'bg-[#100A55] p-4 w-15 h-15 rounded-full place-content-center flex text-white',
@@ -41,9 +31,9 @@ const LandingPage = () => {
       description: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
       style: 'w-fit p-5 leading-6 rounded-lg bg-[#7065F0] text-white'
     }
-  ]
+  ])
 
-  const sectionData2 = [
+  const [sectionData2, setSectionData2] = useState([
     {
       style: 'pr-15 border-r-[0.09375rem] max-sm:pb-15 max-sm:border-b-[0.09375rem] max-sm:pr-0 max-sm:border-r-[0] border-white',
       number: '7.4%',
@@ -58,7 +48,7 @@ const LandingPage = () => {
       number: '2,540',
       text: 'Daily Completed Transactions',
     }
-  ]
+  ])
 
   return (
     <main className='overflow-x-hidden w-screen max-sm:border'>
@@ -67,7 +57,7 @@ const LandingPage = () => {
 
       <PropertyInfo />
 
-      <PropertyListSection properties={filteredProperties} onSearch={handleSearch}/>
+      <PropertyListSection/>
 
       <CardInfo section={{sectionData, sectionData2}}/>
 

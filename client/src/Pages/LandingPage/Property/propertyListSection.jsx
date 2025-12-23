@@ -1,10 +1,14 @@
-import React from 'react'
-import PropertyListData from './propertyListData'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaKey, FaSearch } from 'react-icons/fa'
 import styles from '../landingPage.module.css'
+import PropertiesListData from '../../../components/PropertiesListData/PropertiesListData'
+import User from '../../../components/User'
 
-const PropertyListSection = ({onSearch, properties}) => {
+const PropertyListSection = () => {
+
+  const { filteredProperties, handleSearch } = useContext(User)
+
   return (
     <section className='max-sm:p-5 max-sm:pt-30 max-sm:leading-12 max-sm:w-full p-50 pt-30 pb-30 leading-7 flex flex-col items-center bg-linear-to-b from-[#FFFFFF] to-[#F0EFFB]'>
       <div className='text-center mb-15'>
@@ -25,15 +29,17 @@ const PropertyListSection = ({onSearch, properties}) => {
             id="search"
             type="search"
             placeholder="Search..."
-            className='outline-none'
-            onChange={(e) => onSearch(e.target.value)}
+            className='outline-none w-full'
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </form>
       </div>
 
       <div className={`${styles['no-scrollbar']} sm:flex-wrap flex justify-start gap-6 w-full h-200 overflow-hidden mb-10 max-sm:h-100 max-sm:overflow-scroll max-sm:gap-0`}>
 
-        <PropertyListData filtered={properties} />
+        {filteredProperties.length > 0 ?
+          <PropertiesListData />
+        :<p>Not found...</p>}
 
       </div>
       <Link to={'/rent'} className='bg-[#100A55] p-2 text-white rounded-lg pl-6 pr-6 max-sm:w-[90%] max-sm:text-center'>Browse more properties</Link>

@@ -6,8 +6,7 @@ import { FaBath, FaBed, FaCheckCircle, FaGreaterThan, FaHome, FaLessThan, FaMapM
 import { CiHeart, CiShare2 } from 'react-icons/ci';
 import Owner from "../../../Images/ListingOwner.png";
 import Squares from "../../../Images/Square-Meters-Outline.png";
-import {Map} from '@vis.gl/react-google-maps';
-import PoiMarkers from '../../../components/PoiMakers';
+import RenderedMap from '../../../components/renderedMap';
 
 const RentDetails = () => {
 
@@ -153,17 +152,10 @@ const RentDetails = () => {
 
               </div>
             </section>
-
-            <div style={{ width: "100%", height: "400px", margin: 'none'}}>
-              <Map
-                style={{ width: "100%", height: "100%" }}
-                defaultZoom={13}
-                defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-                mapId={`64c959856ed0188a804d4ff1`}
-              >
-                <PoiMarkers />
-              </Map>
-            </div>
+            
+            <section style={{ width: "100%", height: "100%" }}>
+              <RenderedMap />
+            </section>
 
             <Link className='flex items-center gap-2 text-[#7065F0] -mt-5 -mb-5'>See more listings in Houston <FaGreaterThan className='text-xs' /></Link>
 

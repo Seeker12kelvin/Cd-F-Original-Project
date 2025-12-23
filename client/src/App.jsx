@@ -20,6 +20,7 @@ import PersonalApplications from "./Pages/Personal-Application/personalApplicati
 import EmploymentApplications from "./Pages/Employment-Application/employmentApplications";
 import {APIProvider} from '@vis.gl/react-google-maps';
 import RentSearch from "./Pages/Rent/Rent-Search/rentSearch";
+import properDetails from "./data/data";
 
 function App() {
 
@@ -41,11 +42,22 @@ function App() {
     age: ''
   })
 
+  const [filteredProperties, setFilteredProperties] = useState(properDetails);
+    
+  const handleSearch = (searchTerm) => {
+    const filtered = properDetails.filter((property) =>
+      property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProperties(filtered);
+  }
+
   const [userLogged, setUserLogged] = useState(false)
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
   const [notFound, setNotFound] = useState(false)
   const [loadingState, setLoadingState] = useState(false)
   const [updatedProfilePic, setUpdatedProfilePic] = useState('')
+  const [moreFilters, setMoreFilters] = useState(false)
 
   const router = createBrowserRouter([
     {
@@ -143,7 +155,11 @@ function App() {
         updatedProfilePic,
         setUpdatedProfilePic,
         userLogged,
-        setUserLogged
+        setUserLogged,
+        filteredProperties,
+        handleSearch,
+        moreFilters,
+        setMoreFilters
       }}>
         <UpdateUserInfo />
         <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>
