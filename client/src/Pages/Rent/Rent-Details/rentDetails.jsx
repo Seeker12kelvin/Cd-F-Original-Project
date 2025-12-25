@@ -7,6 +7,8 @@ import { CiHeart, CiShare2 } from 'react-icons/ci';
 import Owner from "../../../Images/ListingOwner.png";
 import Squares from "../../../Images/Square-Meters-Outline.png";
 import RenderedMap from '../../../components/renderedMap';
+import { Map } from '@vis.gl/react-google-maps';
+import PoiMarkers from '../../../components/PoiMakers';
 
 const RentDetails = () => {
 
@@ -83,7 +85,7 @@ const RentDetails = () => {
 
         <div className="flex justify-between gap-8">
 
-          <div className="w-[65%] flex flex-col gap-10">
+          <div className="w-[65%] h-full flex flex-col gap-10">
 
             <div className="flex w-full items-center justify-around p-6 rounded-xl border border-[#F0EFFB]">
               {stats.map((item, index) => (
@@ -153,8 +155,8 @@ const RentDetails = () => {
               </div>
             </section>
             
-            <section style={{ width: "100%", height: "100%" }}>
-              <RenderedMap />
+            <section className='h-52 rounded-xl' style={{ width: "100%" }}>
+              <RenderedMap sty={'1rem'} />
             </section>
 
             <Link className='flex items-center gap-2 text-[#7065F0] -mt-5 -mb-5'>See more listings in Houston <FaGreaterThan className='text-xs' /></Link>

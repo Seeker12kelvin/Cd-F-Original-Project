@@ -52,6 +52,21 @@ function App() {
     setFilteredProperties(filtered);
   }
 
+  const [properties, setProperties] = useState(properDetails)
+
+  const more = (btn, bedroom, bathrooms) => {
+    const morefilters = properDetails.filter(data => {
+      return(
+        !btn || data.category === btn &&
+        !bedroom || data.beds === bedroom && 
+        !bathrooms || data.bathrooms === bathrooms
+      )
+    }
+      
+    )
+    setProperties(morefilters)
+  }
+
   const [userLogged, setUserLogged] = useState(false)
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
   const [notFound, setNotFound] = useState(false)
@@ -159,7 +174,10 @@ function App() {
         filteredProperties,
         handleSearch,
         moreFilters,
-        setMoreFilters
+        setMoreFilters,
+        properties,
+        setProperties,
+        more
       }}>
         <UpdateUserInfo />
         <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>

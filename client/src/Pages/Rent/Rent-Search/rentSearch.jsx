@@ -3,11 +3,8 @@ import properDetails from '../../../data/data';
 import RenderedMap from '../../../components/renderedMap';
 import SearchProperty from './Property/searchProperty';
 import User from '../../../components/User';
-import MoreFilters from './moreFilters';
 
 const RentSearch = () => {
-  
-  const { moreFilters } = useContext(User)
 
   const isStyle = {
     color: '#100A55'
@@ -17,20 +14,20 @@ const RentSearch = () => {
     color: '#100A55'
   }
 
-  const [properties, setProperties] = useState(properDetails)
+  const {properties, setProperties} = useContext(User)
   const [touch, setTouch] = useState(false)
   const [sort, setSort] = useState(false)
 
   const filtered = (filt) => {
     setProperties(properDetails)
     if(!touch){
-      const filter = properties.filter(data => data.bathrooms >= filt)
+      const filter = properties.filter(data => data.beds >= filt)
       setProperties(filter);
     }
   }
 
   return (
-    <main className='flex mt-21 justify-between h-screen w-screen'>
+    <main className='flex mt-21 justify-between h-screen w-screen relative'>
       <RenderedMap />
       <SearchProperty 
         filt={filtered}
@@ -40,8 +37,8 @@ const RentSearch = () => {
         styleOne={isStyle}
         styleTwo={isStyleTwo}
         setBtnTouch={setTouch}
-        setSor={setSort}/>
-      {moreFilters ? <MoreFilters />: null}
+        setSor={setSort}
+        />
     </main>
   )
 }

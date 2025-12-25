@@ -10,7 +10,7 @@ const Logo = ({scale}) => {
         src={LogoImg}
         alt='Logo'/>
       
-      <Link to='/'>Estatery</Link>
+      <Link to='/landing-page'>Estatery</Link>
     </div>
   )
 }

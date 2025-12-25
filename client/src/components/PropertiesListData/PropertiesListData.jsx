@@ -8,14 +8,10 @@ import Squares from "../../Images/Square-Meters-Outline.png";
 import User from '../User'
 
 const PropertiesListData = ({props}) => {
-  
-  const { filteredProperties } = useContext(User)
-
-  const render = filteredProperties ?? props.properties
 
   return (
       
-    render.map(data => {
+    props.map(data => {
       return(
         <Link key={data.id} to={`/rent/${data.id}`}>
           <article

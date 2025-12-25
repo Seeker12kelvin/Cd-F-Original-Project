@@ -32,7 +32,7 @@ const HeaderContent = () => {
   return (
     <header 
       className='w-full flex justify-between items-center pt-4 pb-4 bg-[#ffffff54] p-10 backdrop-blur-3xl border-b-2 border-[#E0DEF7] z-999 fixed top-0'>
-      <Link to='/'><Logo /></Link>
+      <Logo />
       <nav className='max-sm:hidden'>
         <ul className='flex gap-8 items-center'>
           {nav.map(data => <NavLink key={data.name} to={data.path} style={({isActive}) => isActive ? style : null}>{data.name}</NavLink>)}
