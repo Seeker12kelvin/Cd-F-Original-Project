@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .personal-input, .personal-select, .personal-fieldset{
   outline: none;
   border: 0.09375rem solid #E0DEF7;
@@ -48,4 +53,20 @@
 
 .animate-out{
   animation: slideOut 0.3s ease-in;
+}
+
+@keyframes onLoad {
+  0%{
+    opacity: 0%;
+    transform: translateY(50px);
+  }
+
+  100%{
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}
+
+.onLoad-animation{
+  animation: onLoad 0.5s ease-in;
 }

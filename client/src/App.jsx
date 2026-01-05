@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from "./Pages/LandingPage/landingPage";
-import Home from "./Pages/Home/home"
+import Home from "./Pages/Home/home";
 import Header from "./components/Header/header";
 import SignUp from "./Pages/SignUp/signUp";
 import Login from "./Pages/Login/login";
@@ -12,8 +12,8 @@ import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
 import UpdateUserInfo from "./components/UpdateUserInfo";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getDatabase, update, ref, push, get, onValue} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { initializeApp } from 'firebase/app';
+import { getDatabase, update, ref, push, get, onValue} from 'firebase/database';
 import SignUpLoginLayout from "./components/signUpLoginLayout";
 import TenancyApplicationsPage from "./Pages/Tenancy-Applications/tenancyApplicationsPage";
 import PersonalApplications from "./Pages/Personal-Application/personalApplications";
@@ -21,6 +21,12 @@ import EmploymentApplications from "./Pages/Employment-Application/employmentApp
 import {APIProvider} from '@vis.gl/react-google-maps';
 import RentSearch from "./Pages/Rent/Rent-Search/rentSearch";
 import properDetails from "./data/data";
+import Message from "./Pages/Message/message";
+import UserMessages from "./Pages/Message/userMessages";
+import Settings from "./Pages/Settings/settings";
+import Profile from "./Pages/Settings/profile";
+import Account from "./Pages/Settings/account";
+import Notification from "./Pages/Settings/notification";
 
 function App() {
 
@@ -33,7 +39,7 @@ function App() {
   const reference = ref(database, 'UserData')
 
   const [userData, setUserData] = useState({
-    name: 'Kelvin Tamaramiepayefa Donye',
+    name: '',
     password: '',
     email: '',
     profilePic: '',
@@ -52,27 +58,14 @@ function App() {
     setFilteredProperties(filtered);
   }
 
-  const [properties, setProperties] = useState(properDetails)
-
-  const more = (btn, bedroom, bathrooms) => {
-    const morefilters = properDetails.filter(data => {
-      return(
-        !btn || data.category === btn &&
-        !bedroom || data.beds === bedroom && 
-        !bathrooms || data.bathrooms === bathrooms
-      )
-    }
-      
-    )
-    setProperties(morefilters)
-  }
-
   const [userLogged, setUserLogged] = useState(false)
   const [userValidity, setUserValidity] = useState({email: '', password: ''})
   const [notFound, setNotFound] = useState(false)
   const [loadingState, setLoadingState] = useState(false)
   const [updatedProfilePic, setUpdatedProfilePic] = useState('')
   const [moreFilters, setMoreFilters] = useState(false)
+
+  const [newMessage, setNewMessage] = useState(false)
 
   const router = createBrowserRouter([
     {
@@ -143,6 +136,34 @@ function App() {
           element: <EmploymentApplications />
         }
       ]
+    },
+    {
+      path: '/message',
+      element: <Message />,
+      children: [
+        {
+          index: true,
+          element: <UserMessages />
+        }
+      ]
+    },
+    {
+      path: '/settings',
+      element: <Settings />,
+      children: [
+        {
+          index: true,
+          element: <Profile />
+        },
+        {
+          path: 'my-account',
+          element: <Account />
+        },
+        {
+          path: 'notifications',
+          element: <Notification />
+        }
+      ]
     }
   ])
 
@@ -175,9 +196,8 @@ function App() {
         handleSearch,
         moreFilters,
         setMoreFilters,
-        properties,
-        setProperties,
-        more
+        newMessage,
+        setNewMessage
       }}>
         <UpdateUserInfo />
         <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>

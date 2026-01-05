@@ -1,26 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import PropertyList from './propertyList'
 import { RiExpandUpDownLine } from 'react-icons/ri'
-import { FaAngleDown, FaFilter, FaGreaterThan, FaList, FaSearch } from 'react-icons/fa'
+import { FaAngleDown, FaGreaterThan, FaList, FaSearch } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { BsFillGridFill } from 'react-icons/bs'
 import User from '../../../../components/User'
-import { FaFilterCircleDollar, FaFilterCircleXmark } from 'react-icons/fa6'
 import { CiFilter } from 'react-icons/ci'
 import MoreFilters from '../moreFilters'
 
-const SearchProperty = ({filt, sor, setBtnTouch, styleOne, styleTwo, setSor, btntouch, proper}) => {
+const SearchProperty = ({filt, sor, setBtnTouch, styleOne, styleTwo, setSor, btntouch, proper, search, filtLogic}) => {
 
-  const { handleSearch, setMoreFilters, moreFilters } = useContext(User)
-
-  const [filterBox, setFilterBlock] = useState(false)
+  const { setMoreFilters, moreFilters } = useContext(User)
 
   return (
     <>
       <section className='flex flex-col h-full w-full p-8 pb-0 gap-5'>
         <nav>
           <ul className='flex items-center gap-2'>
-            <li><NavLink style={({isActive}) => isActive ? styleOne : {color: '#100a5575'}} to='/rent'>Home</NavLink></li>
+            <li><NavLink style={({isActive}) => isActive ? styleOne : {color: '#100a5575'}} to='/rent' end>Home</NavLink></li>
             <li><FaGreaterThan /></li>
             <li><NavLink style={({isActive}) => isActive ? styleTwo : {color: '#100a5575'}} to='/rent/search'>Search</NavLink></li>
           </ul>
@@ -34,7 +31,7 @@ const SearchProperty = ({filt, sor, setBtnTouch, styleOne, styleTwo, setSor, btn
             <FaSearch  className='text-[#7065F0]'/>
             <input
               id='search'
-              onChange={(e) => handleSearch(e.target.value)}
+              onChange={(e) => search(e.target.value)}
               type="search" placeholder='Search...' className='outline-none w-full' />
           </label>
           <button
@@ -65,7 +62,6 @@ const SearchProperty = ({filt, sor, setBtnTouch, styleOne, styleTwo, setSor, btn
 
             <li>
               <button
-                onClick={() => setFilterBlock(prev => !prev)}
                 className='border-[#E0DEF7] border-[0.09375rem] p-3 bg-transparent rounded-lg flex items-center gap-2'>Newest 
               <FaAngleDown className='border-[#E0DEF7] border-[0.09375rem] bg-[#E8E6F9] rounded-full' /></button>
             </li>
@@ -94,7 +90,7 @@ const SearchProperty = ({filt, sor, setBtnTouch, styleOne, styleTwo, setSor, btn
         <PropertyList properties={proper} sor={sor} />
       </section>
 
-      {moreFilters ? <MoreFilters />: null}
+      {moreFilters ? <MoreFilters filLog={filtLogic} />: null}
     </>
   )
 }

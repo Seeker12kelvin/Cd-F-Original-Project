@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from './Logo'
 import { Link, NavLink } from 'react-router-dom'
 import { CiMenuBurger } from 'react-icons/ci'
@@ -27,8 +27,6 @@ const HeaderContent = () => {
     borderRadius: '0.4rem'
   }
 
-  const [navigation, setNavigation] = useState(false)
-
   return (
     <header 
       className='w-full flex justify-between items-center pt-4 pb-4 bg-[#ffffff54] p-10 backdrop-blur-3xl border-b-2 border-[#E0DEF7] z-999 fixed top-0'>
@@ -49,7 +47,7 @@ const HeaderContent = () => {
           className='bg-[#7065F0] pt-3 pb-3 p-6 text-white rounded-xl cursor-pointer'><Link to='/signUp&login/sign-up'>Sign up</Link></button>
       </div>
 
-      <button onClick={() => setNavigation(prev => !prev)} className='sm:hidden'><CiMenuBurger /></button>
+      <button className='max-sm:flex'><CiMenuBurger /></button>
     </header>
   )
 }

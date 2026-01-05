@@ -2,15 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from "./login.module.css";
 import { FaBath, FaGoogle, FaStarOfLife } from 'react-icons/fa';
-import Logo from '../../components/Logo';
-import BeverlyImg from "../../Images/BeverlySpring.png";
-import LogoImg from "../../Images/Logo.png";
-import DesignFlag from "../../Images/Design-Flag.png";
-import { FaHeart } from 'react-icons/fa';
-import { FaBed } from 'react-icons/fa';
-import Squares from "../../Images/Square-Meters-Outline.png";
 import User from '../../components/User';
-import Loading from '../../../bouncing-circles.svg'
+import Loading from '../../Images/bouncing-circles.svg'
 
 const Login = () => {
 

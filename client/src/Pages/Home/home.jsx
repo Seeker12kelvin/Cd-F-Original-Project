@@ -9,7 +9,7 @@ import ProfileMenuBar from '../../components/ProfileMenuBar';
 
 const Home = () => {
 
-  const { userData, userLogged } = useContext(User)
+  const { userData } = useContext(User)
   const name = userData.name
 
   const [remove, setRemove] = useState(false)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaReadme, FaVideo } from 'react-icons/fa';
 import { FaHouseCircleCheck } from 'react-icons/fa6';
 import HeroSection from './heroSection';
@@ -9,7 +9,7 @@ import LandlordInfo from './landlordInfo';
 
 const LandingPage = () => {
 
-  const [sectionData, setSectionData] = useState([
+  const sectionData = [
     {
       icon: <FaVideo className='w-full h-full' />,
       iconStyle: 'bg-[#100A55] p-4 w-15 h-15 rounded-full place-content-center flex text-white',
@@ -31,9 +31,9 @@ const LandingPage = () => {
       description: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
       style: 'w-fit p-5 leading-6 rounded-lg bg-[#7065F0] text-white'
     }
-  ])
+  ]
 
-  const [sectionData2, setSectionData2] = useState([
+  const sectionDataTwo = [
     {
       style: 'pr-15 border-r-[0.09375rem] max-sm:pb-15 max-sm:border-b-[0.09375rem] max-sm:pr-0 max-sm:border-r-[0] border-white',
       number: '7.4%',
@@ -48,19 +48,16 @@ const LandingPage = () => {
       number: '2,540',
       text: 'Daily Completed Transactions',
     }
-  ])
+  ]
 
   return (
     <main className='overflow-x-hidden w-screen max-sm:border'>
       
-      <HeroSection/>
-
+      <h1><span className='sr-only'>Landing Page</span></h1>
+      <HeroSection />
       <PropertyInfo />
-
-      <PropertyListSection/>
-
-      <CardInfo section={{sectionData, sectionData2}}/>
-
+      <PropertyListSection />
+      <CardInfo sectionOne={sectionData} sectionTwo={sectionDataTwo} />
       <LandlordInfo />
     </main>
   )

@@ -1,29 +1,41 @@
 import React, { useContext, useState } from 'react'
-import { FaMinus, FaPlus } from 'react-icons/fa'
 import styles from './rentSearch.module.css'
 import User from '../../../components/User'
+import useFilterLogic from '../../../components/FilterLogic'
 
-const MoreFilters = () => {
+const MoreFilters = ({ filLog }) => {
 
-  const { setMoreFilters, more } = useContext(User)
+  const { setMoreFilters } = useContext(User)
 
   const [bedroom, setBedroomCount] = useState(0)
   const [bathroom, setBathroomCount] = useState(0)
   const [btn, setBtn] = useState('')
-  const [anim, setAnim] = useState(null)
+  const [anim, setAnim] = useState(false)
+
+  const {
+    setCategory,
+    setBedrooms,
+    setBathrooms
+  } = filLog
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    more(btn, bedroom, bathroom)
+
+    setCategory(btn)
+    setBedrooms(bedroom)
+    setBathrooms(bathroom)
+
     // Will add the price range and rental period logic soon
+    
     setTimeout(() => {
       setMoreFilters(prev => !prev)
     }, 300)
+
     setAnim(prev => !prev)
   }
 
   return (
-    <aside aria-live='More filters' className={`z-50 absolute w-[51.2%] h-fit right-0 bg-[#0000006c]`}>
+    <aside aria-live="polite" className={`z-50 absolute w-[51.2%] h-fit right-0 bg-[#0000006c]`}>
       <form onSubmit={handleSubmit} className={`bg-[white] ${anim ? styles['animate-out']: ''} ${styles['animate-in']} w-[60%] ml-auto -mt-10 h-full overflow-y-scroll p-15 pb-20 flex flex-col gap-5`}>
         <h2 className='text-2xl text-[#000929] font-bold'>More Filters</h2>
         
@@ -77,12 +89,12 @@ const MoreFilters = () => {
                 <button
                   type="button"
                   className={`text-white text-lg rounded-full ${bedroom === 0 ? 'bg-[#8080803b]':'bg-[#7065F0]'} pl-2 pr-2 h-fit w-fit`}
-                  disabled={bedroom === 0 ? true : false} onClick={() => setBedroomCount(prev => --prev)}>-</button>
+                  disabled={bedroom === 0 ? true : false} onClick={() => setBedroomCount(prev => prev - 1)}>-</button>
                 <strong>{bedroom}</strong>
                 <button
                   type="button"
                   className='text-white text-lg rounded-full bg-[#7065F0] pl-2 pr-2 h-fit w-fit'
-                  onClick={() => setBedroomCount(prev => ++prev)}>+</button>
+                  onClick={() => setBedroomCount(prev => prev + 1)}>+</button>
               </span>
             </li>
             <li className='flex justify-between items-center'>
@@ -91,12 +103,12 @@ const MoreFilters = () => {
                 <button
                   type="button"
                   className={`text-white text-lg rounded-full ${bathroom === 0 ? 'bg-[#8080803b]':'bg-[#7065F0]'} pl-2 pr-2 h-fit w-fit`}
-                  disabled={bathroom === 0 ? true : false} onClick={() => setBathroomCount(prev => --prev)}>-</button>
+                  disabled={bathroom === 0 ? true : false} onClick={() => setBathroomCount(prev => prev - 1)}>-</button>
                 <strong>{bathroom}</strong>
                 <button
                   type="button"
                   className='text-white text-lg rounded-full bg-[#7065F0] pl-2 pr-2 h-fit w-fit'
-                  onClick={() => setBathroomCount(prev => ++prev)}>+</button>
+                  onClick={() => setBathroomCount(prev => prev + 1)}>+</button>
               </span>
             </li>
           </ul>

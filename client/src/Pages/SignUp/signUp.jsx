@@ -5,7 +5,7 @@ import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
-import Loading from '../../../bouncing-circles.svg'
+import Loading from '../../Images/bouncing-circles.svg'
 
 const SignUp = () => {
   const {push, reference, loadingState, setLoadingState, onValue, userData, setUserData } = useContext(User)

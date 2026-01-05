@@ -38,7 +38,7 @@ const PropertyListSection = () => {
       <div className={`${styles['no-scrollbar']} sm:flex-wrap flex justify-start gap-6 w-full h-200 overflow-hidden mb-10 max-sm:h-100 max-sm:overflow-scroll max-sm:gap-0`}>
 
         {filteredProperties.length > 0 ?
-          <PropertiesListData />
+          <PropertiesListData props={{filteredProperties}} />
         :<p>Not found...</p>}
 
       </div>

@@ -9,7 +9,7 @@ import { CgProfile } from "react-icons/cg";
 
 const ProfileMenuBar = () => {
 
-  const { userData, userLogged } = useContext(User)
+  const { userData } = useContext(User)
   const name = userData.name
 
   const firstName = name.split(' ')[0]
@@ -19,7 +19,7 @@ const ProfileMenuBar = () => {
 
   const menuBarList = [
     {name: 'My Profile',
-      link: '',
+      link: '/settings',
       icon: <CgProfile />,
       style: 'pb-4 text-[#000929] text-[1rem] font-medium border-b border-[#E0DEF7]'
     },

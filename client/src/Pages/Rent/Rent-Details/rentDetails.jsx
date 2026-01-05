@@ -7,8 +7,6 @@ import { CiHeart, CiShare2 } from 'react-icons/ci';
 import Owner from "../../../Images/ListingOwner.png";
 import Squares from "../../../Images/Square-Meters-Outline.png";
 import RenderedMap from '../../../components/renderedMap';
-import { Map } from '@vis.gl/react-google-maps';
-import PoiMarkers from '../../../components/PoiMakers';
 
 const RentDetails = () => {
 

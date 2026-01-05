@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './landingPage.module.css'
 
-const CardInfo = ({section}) => {
+const CardInfo = ({sectionOne, sectionTwo}) => {
   return (
     <section className='bg-[#100A55] pt-30 pb-30 w-full flex flex-col gap-15 max-sm:p-0 max-sm:pb-10 max-sm:text-center'>
       <div className='pl-40 pb-20 border-b-[#312F4B] border-b-2 max-sm:p-5'>
@@ -11,9 +11,9 @@ const CardInfo = ({section}) => {
         </div>
         
         <div className={`max-sm:h-fit max-sm:flex-col max-sm:overflow-hidden flex gap-6 w-full overflow-scroll ${styles['no-scrollbar']}`}>
-          {section.sectionData.map(data => {
+          {sectionOne.map(data => {
             return(
-              <div className={`${data.style} max-sm:flex-col max-sm:w-full max-sm:text-left max-sm:h-fit max-sm:items-start flex gap-4 h-48 items-center justify-between`}>
+              <div key={data.topic} className={`${data.style} max-sm:flex-col max-sm:w-full max-sm:text-left max-sm:h-fit max-sm:items-start flex gap-4 h-48 items-center justify-between`}>
                 <div className={`${data.iconStyle} -mt-15 max-sm:mt-0`}>{data.icon}</div>
                 <div>
                   <h3 className='font-bold text-2xl mb-3'>{data.topic}</h3>
@@ -27,9 +27,9 @@ const CardInfo = ({section}) => {
       </div>
 
       <ul className='max-sm:flex-col flex gap-15 items-center self-center'>
-        {section.sectionData2.map(data => {
+        {sectionTwo.map(data => {
           return(
-            <li className={`text-[2.5rem] text-white font-bold flex flex-col items-center ${data.style}`}>
+            <li key={data.text} className={`text-[2.5rem] text-white font-bold flex flex-col items-center ${data.style}`}>
               <strong>{data.number}</strong>
               <span className='text-[1rem] font-normal opacity-70'>{data.text}</span>
             </li>

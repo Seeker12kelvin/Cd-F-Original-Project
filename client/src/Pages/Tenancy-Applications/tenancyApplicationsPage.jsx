@@ -65,8 +65,8 @@ const TenancyApplicationsPage = () => {
         <ul className='flex items-center gap-4'>
           {steps.map((data) => {
             return(
-              <li key={data.id} to={data.link} className='flex gap-2 items-center text-[1rem]'>
-                <NavLink style={({isActive}) => isActive ? styles : null} className='bg-[#F0EFFB] rounded-full pl-2 pr-2 h-fit'>{data.id}</NavLink>
+              <li key={data.id} className='flex gap-2 items-center text-[1rem]'>
+                <NavLink style={({isActive}) => isActive ? styles : null} className='bg-[#F0EFFB] rounded-full pl-2 pr-2 h-fit' to={data.link}>{data.id}</NavLink>
                 {data.step}
                 <span className='text-lg'>{data.icon}</span>
               </li>
