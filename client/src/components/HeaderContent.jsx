@@ -47,7 +47,7 @@ const HeaderContent = () => {
           className='bg-[#7065F0] pt-3 pb-3 p-6 text-white rounded-xl cursor-pointer'><Link to='/signUp&login/sign-up'>Sign up</Link></button>
       </div>
 
-      <button className='max-sm:flex'><CiMenuBurger /></button>
+      <button className='max-sm:flex hidden'><CiMenuBurger /></button>
     </header>
   )
 }
