@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './message.module.css'
 import { FaBurger } from 'react-icons/fa6'
 import { FaBell, FaList, FaRegListAlt } from 'react-icons/fa'
@@ -45,9 +45,13 @@ const Message = () => {
       link: 'iuuwfaie',
     },
     {
-      icon: <CiMail />
+      icon: <CiMail />,
+      link: '/message',
+      end: true
     }
   ]
+
+  const { many } = useContext(User)
 
   return (
     <>
@@ -57,6 +61,7 @@ const Message = () => {
         </button>
 
         <h1 className='font-bold text-2xl'>Messages</h1>
+        {many && <p>{many}</p>}
 
         <div className='flex items-center gap-4'>
            <button className='h-full p-3 rounded-xl bg-[#E0DEF7] border-[#E0DEF7] text-center border-r-2 flex items-center'>
@@ -82,7 +87,7 @@ const Message = () => {
 
               {nav.map((item, index) => (
                 <li key={index}>
-                  <NavLink style={({isActive}) => isActive ? style : null} to={item.link} className='flex h-fit flex-col items-center text-2xl text-[#100a556c]'>
+                  <NavLink style={({isActive}) => isActive ? style : null} to={item.link} end={item.end} className='flex h-fit flex-col items-center text-2xl text-[#100a556c]'>
                     {item.icon}
                   </NavLink>
                 </li>

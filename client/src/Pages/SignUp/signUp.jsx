@@ -6,9 +6,12 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
 import Loading from '../../Images/bouncing-circles.svg'
+import firebaseLogic from '../../components/firebaseLogic';
 
 const SignUp = () => {
-  const {push, reference, loadingState, setLoadingState, onValue, userData, setUserData } = useContext(User)
+  const { loadingState, setLoadingState, userData, setUserData } = useContext(User);
+
+  const { reference, push, onValue } = firebaseLogic();
   
   const [found, setFound] = useState(false)
   const navigate = useNavigate()
@@ -20,10 +23,6 @@ const SignUp = () => {
         name: e.target.elements.name.value,
         password: e.target.elements.password.value,
         email: e.target.elements.email.value,
-        profilePic: '',
-        dateOfBirth: '',
-        phoneNumber: '',
-        age: ''
       }))
   }
   
@@ -44,6 +43,7 @@ const SignUp = () => {
       }else {
         const newUserRef = push(reference, userData);
         localStorage.setItem("currentUserId", newUserRef.key);
+        localStorage.setItem("loginUserData", userData);
         setLoadingState(prev => !prev)
       }
     })

@@ -4,7 +4,7 @@ import { BsPersonFill } from "react-icons/bs";
 
 const Profile = () => {
 
-  const { setUserData, userData } = useContext(User)
+  const { userData } = useContext(User)
 
   const handleSubmit = (e) => {
     e.preventDefault()

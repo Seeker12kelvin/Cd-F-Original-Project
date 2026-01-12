@@ -4,12 +4,11 @@ import styles from "./login.module.css";
 import { FaBath, FaGoogle, FaStarOfLife } from 'react-icons/fa';
 import User from '../../components/User';
 import Loading from '../../Images/bouncing-circles.svg'
+import firebaseLogic from '../../components/firebaseLogic';
 
 const Login = () => {
 
   const { 
-    onValue, 
-    reference, 
     userData, 
     notFound, 
     loadingState, 
@@ -20,6 +19,11 @@ const Login = () => {
     userValidity,
     setUserLogged } = useContext(User)
 
+  const {
+    onValue,
+    reference
+   } = firebaseLogic();
+
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
@@ -29,6 +33,11 @@ const Login = () => {
 
   useEffect(() => {
     if(!userValidity.email || !userValidity.password){
+      return
+    }else if(localStorage.getItem('loginUserData')){
+      const storedData = JSON.parse(localStorage.getItem('loginUserData'))
+      setUserData(prev => ({...prev, ...storedData}))
+      setLoadingState(prev => !prev)
       return
     }
     

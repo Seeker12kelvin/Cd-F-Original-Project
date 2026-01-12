@@ -12,8 +12,7 @@ import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
 import UpdateUserInfo from "./components/UpdateUserInfo";
-import { initializeApp } from 'firebase/app';
-import { getDatabase, update, ref, push, get, onValue} from 'firebase/database';
+
 import SignUpLoginLayout from "./components/signUpLoginLayout";
 import TenancyApplicationsPage from "./Pages/Tenancy-Applications/tenancyApplicationsPage";
 import PersonalApplications from "./Pages/Personal-Application/personalApplications";
@@ -27,19 +26,13 @@ import Settings from "./Pages/Settings/settings";
 import Profile from "./Pages/Settings/profile";
 import Account from "./Pages/Settings/account";
 import Notification from "./Pages/Settings/notification";
+import UserChats from "./Pages/Message/userChats";
+import ChatBox from "./Pages/Message/chatBox";
 
 function App() {
 
-  const firebaseConfig = {
-    databaseURL: "https://estatery-ebaec-default-rtdb.firebaseio.com"
-  }
-
-  const app = initializeApp(firebaseConfig)
-  const database = getDatabase(app)
-  const reference = ref(database, 'UserData')
-
   const [userData, setUserData] = useState({
-    name: '',
+    name: 'Kelvin Tamaramiepayefa Donye',
     password: '',
     email: '',
     profilePic: '',
@@ -66,6 +59,19 @@ function App() {
   const [moreFilters, setMoreFilters] = useState(false)
 
   const [newMessage, setNewMessage] = useState(false)
+  const [chatUser, setChatUser] = useState(null)
+  
+  const [userEmail, setUserEmail] = useState('')
+  const [there, setThere] = useState(false)
+  const [filled, setFilled] = useState(false)
+  const [many, setMany] = useState('')
+
+  const handleNewMessage = (e) => {
+    e.preventDefault()
+    // Handle form submission logic here
+    setUserEmail(e.target.elements.email.value)
+    setNewMessage(false)
+  }
 
   const router = createBrowserRouter([
     {
@@ -144,6 +150,16 @@ function App() {
         {
           index: true,
           element: <UserMessages />
+        },
+        {
+          path: 'chat',
+          element: <UserChats />,
+          children: [
+            {
+              path: ':id',
+              element: <ChatBox />
+            }
+          ]
         }
       ]
     },
@@ -170,15 +186,6 @@ function App() {
   return (
     <>
       <User.Provider value={{
-        initializeApp,
-        getDatabase,
-        ref,
-        update,
-        push,
-        get,
-        onValue,
-        firebaseConfig,
-        reference,
         userData,
         setUserData,
         userValidity,
@@ -187,7 +194,6 @@ function App() {
         setNotFound,
         loadingState,
         setLoadingState,
-        database,
         updatedProfilePic,
         setUpdatedProfilePic,
         userLogged,
@@ -197,7 +203,18 @@ function App() {
         moreFilters,
         setMoreFilters,
         newMessage,
-        setNewMessage
+        setNewMessage,
+        chatUser,
+        setChatUser,
+        userEmail,
+        setUserEmail,
+        there,
+        setThere,
+        filled,
+        setFilled,
+        handleNewMessage,
+        many,
+        setMany
       }}>
         <UpdateUserInfo />
         <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>
