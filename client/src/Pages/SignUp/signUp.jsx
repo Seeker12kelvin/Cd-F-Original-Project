@@ -9,55 +9,75 @@ import Loading from '../../Images/bouncing-circles.svg'
 import firebaseLogic from '../../components/firebaseLogic';
 
 const SignUp = () => {
-  const { loadingState, setLoadingState, userData, setUserData } = useContext(User);
+  const { loadingState, setLoadingState, setUserData } = useContext(User);
 
-  const { reference, push, onValue } = firebaseLogic();
+  const { reference, push, get } = firebaseLogic();
   
   const [found, setFound] = useState(false)
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setUserData(prev => (
-      { ...prev,
-        name: e.target.elements.name.value,
-        password: e.target.elements.password.value,
-        email: e.target.elements.email.value,
-      }))
-  }
-  
-  useEffect(() => {
-    if (!userData.email || !userData.password) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    onValue(reference, snapshot => {
-      const data = snapshot.val() || {};
-      const userValue = Object.values(data);
-      
-      const foundUser = userValue.find(
-        val => val.email === userData.email && val.password === userData.password
-      );
+    const name = e.target.elements.name.value;
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
 
-      if(foundUser) {
+    setUserData(prev => ({...prev, name, email, password}))
+
+    const newUserData = {
+      name,
+      email,
+      password,
+      profilePic: '',
+      dateOfBirth: '',
+      phoneNumber: '',
+      age: '',
+      favorites: [],
+      createdAt: Date.now()
+    };
+
+    try {
+      const snapshot = await get(reference);
+      const users = snapshot.exists() ? Object.values(snapshot.val()) : [];
+
+      const emailExists = users.find(user => user.email === email);
+
+      if (emailExists) {
         setFound(true);
-        setLoadingState(prev => !prev)
-      }else {
-        const newUserRef = push(reference, userData);
-        localStorage.setItem("currentUserId", newUserRef.key);
-        localStorage.setItem("loginUserData", userData);
-        setLoadingState(prev => !prev)
+        return;
       }
-    })
-  }, [userData]);
+
+      const newUserRef = await push(reference, newUserData);
+
+      localStorage.setItem("currentUserId", newUserRef.key);
+      localStorage.setItem("loginUserData", JSON.stringify(newUserData));
+
+      setUserData(newUserData);
+      setLoadingState(true);
+
+    } catch (error) {
+      console.error("Signup error:", error);
+    }
+  };
+
 
   useEffect(() => {
-    loadingState ?
-    setTimeout(() => {
-      setLoadingState(prev => !prev)
-      navigate('/home')
-    }, 3000)
-    :
-    null
-  }, [navigate])
+    if(loadingState){
+      setTimeout(() => {
+        setLoadingState(prev => !prev)
+        navigate('/home')
+      }, 3000)
+    }
+  }, [loadingState, navigate])
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('loginUserData');
+
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+  }, [setUserData]);
 
   const handleLoading = () => {
     return (
@@ -143,7 +163,7 @@ const SignUp = () => {
 
         <p className='text-[#0009297d] text-center'>Already have an account? <Link to='/signUp&login/login' className='font-bold text-black underline'>Login</Link></p>
       </form>
-      : 
+      :
       handleLoading()
     }
   </>

@@ -36,7 +36,7 @@ const Login = () => {
       return
     }else if(localStorage.getItem('loginUserData')){
       const storedData = JSON.parse(localStorage.getItem('loginUserData'))
-      setUserData(prev => ({...prev, ...storedData}))
+      setUserData(prev => ({...prev, name: storedData.name, email: storedData.email, password: storedData.password}))
       setLoadingState(prev => !prev)
       return
     }
@@ -128,7 +128,7 @@ const Login = () => {
         </div>
 
 
-        <p className='text-[#0009297d] text-center'>Don't have an account? <Link to='/signUp&login/sign-up' className='font-bold text-black underline'>Sign up for free</Link></p>
+        <p className='text-[#0009297d] text-center'>Don't have an account? <Link to='/signUp&login' className='font-bold text-black underline'>Sign up for free</Link></p>
       </form> 
       : 
       handleLoading()

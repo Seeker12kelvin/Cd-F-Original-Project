@@ -139,6 +139,4 @@ const properDetails = [
 
 export const favoriteDetails = []
 
-export const listOfUserMessages = []
-
 export default properDetails

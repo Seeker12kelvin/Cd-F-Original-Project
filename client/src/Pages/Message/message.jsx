@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './message.module.css'
 import { FaBurger } from 'react-icons/fa6'
 import { FaBell, FaList, FaRegListAlt } from 'react-icons/fa'
@@ -7,7 +7,7 @@ import { PiHouseSimpleLight } from "react-icons/pi";
 import { AiOutlineDollar } from "react-icons/ai";
 import { TbUsersGroup } from "react-icons/tb";
 import { GoLightBulb } from "react-icons/go";
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { CiMail } from "react-icons/ci";
 import { GoQuestion } from "react-icons/go";
 import LogoImg from '../../Images/Logo.png'
@@ -51,7 +51,13 @@ const Message = () => {
     }
   ]
 
-  const { many } = useContext(User)
+  const navigate = useNavigate()
+
+  const { many, listOfMessages } = useContext(User)
+
+  useEffect(() => {
+    navigate("/message/chat");
+  }, [listOfMessages])
 
   return (
     <>
@@ -107,7 +113,7 @@ const Message = () => {
           </nav>
           
         </aside>
-
+ 
         <Outlet />
       </main>
     </>

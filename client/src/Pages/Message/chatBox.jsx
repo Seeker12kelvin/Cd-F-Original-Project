@@ -27,7 +27,9 @@ const ChatBox = () => {
           <MdMenu />
         </div>
       </div>
-      <form className='p-3 bg-white rounded-xl border-[#E0DEF7] border-[0.09375rem]'>
+      <form onSubmit={(e) => {
+        e.preventDefault()
+      }} className='p-3 bg-white rounded-xl border-[#E0DEF7] border-[0.09375rem]'>
         <input type="text" placeholder='Type your message...' className='w-full bg-transparent mb-3 outline-none' />
         <div className='flex items-center w-full justify-between'>
           <div className='flex items-center gap-5'>

@@ -4,7 +4,6 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 import { FaAlignJustify, FaArchive, FaBold, FaItalic, FaLink, FaSearch, FaStar } from 'react-icons/fa'
 import { BsPersonFill } from 'react-icons/bs'
 import NewMessageModal from './newMessageModal'
-import { listOfUserMessages } from '../../data/data'
 import { BiSend } from 'react-icons/bi'
 import { MdDelete, MdMenu } from 'react-icons/md'
 import { CiWarning } from 'react-icons/ci'
@@ -13,7 +12,7 @@ import { RiAttachment2 } from "react-icons/ri";
 
 const UserChats = () => {
 
-  const { chatUser, setNewMessage } = useContext(User)
+  const { chatUser, setNewMessage, listOfUserMessages } = useContext(User)
 
   const style = {
     backgroundColor: "#F7F7FD",
@@ -40,7 +39,7 @@ const UserChats = () => {
         </form>
 
         <div className='mt-24 mb-4 flex items-center justify-between'>
-          {listOfUserMessages.map((data, index) => {
+          {listOfUserMessages.map((data) => {
 
             const firstName = data.name.split(' ')[0]
             const lastName = data.name.split('') === 1 ? data.name.split('')[1]: data.name.split('') === 3 ? data.name.split('')[2]: data.name.split(' ')[2]
@@ -49,7 +48,7 @@ const UserChats = () => {
               <NavLink
                 style={({isActive}) => isActive ? style : null}
                 key={data.id} 
-                to={`/message/chat/${data.id}`} 
+                to={`/message/chat/${data.name}`} 
                 className='w-full p-4 flex items-center border-b border-[#E0DEF7] hover:bg-[#F7F7FD] rounded-lg'>
                 {
                   data.profilePic

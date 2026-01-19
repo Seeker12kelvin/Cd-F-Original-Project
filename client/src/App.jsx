@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from "./Pages/LandingPage/landingPage";
 import Home from "./Pages/Home/home";
@@ -12,7 +12,6 @@ import Applications from "./Pages/Applications/applications";
 import Favorite from "./Pages/Favorited/favorited";
 import User from "./components/User";
 import UpdateUserInfo from "./components/UpdateUserInfo";
-
 import SignUpLoginLayout from "./components/signUpLoginLayout";
 import TenancyApplicationsPage from "./Pages/Tenancy-Applications/tenancyApplicationsPage";
 import PersonalApplications from "./Pages/Personal-Application/personalApplications";
@@ -28,18 +27,22 @@ import Account from "./Pages/Settings/account";
 import Notification from "./Pages/Settings/notification";
 import UserChats from "./Pages/Message/userChats";
 import ChatBox from "./Pages/Message/chatBox";
+import firebaseLogic from "./components/firebaseLogic";
 
 function App() {
 
   const [userData, setUserData] = useState({
-    name: 'Kelvin Tamaramiepayefa Donye',
+    name: '',
     password: '',
     email: '',
     profilePic: '',
     dateOfBirth: '',
     phoneNumber: '',
-    age: ''
+    age: '',
+    favorites: []
   })
+
+  const { get, reference, } = firebaseLogic();
 
   const [filteredProperties, setFilteredProperties] = useState(properDetails);
     
@@ -60,16 +63,52 @@ function App() {
 
   const [newMessage, setNewMessage] = useState(false)
   const [chatUser, setChatUser] = useState(null)
-  
-  const [userEmail, setUserEmail] = useState('')
+
   const [there, setThere] = useState(false)
   const [filled, setFilled] = useState(false)
   const [many, setMany] = useState('')
+  const [chatId, setChatId] = useState('')
+  const [listOfUserMessages, setListOfUserMessages] = useState([])
 
-  const handleNewMessage = (e) => {
+  const identity = useRef(0);
+
+  const handleNewMessage = async (e) => {
     e.preventDefault()
     // Handle form submission logic here
-    setUserEmail(e.target.elements.email.value)
+
+    try {
+      const snapshot = await get(reference);
+
+      if (!snapshot.exists()) {
+        setThere(true);
+        return;
+      }
+
+      const data = snapshot.val();
+      const usersArray = Object.values(data);
+
+      const found = usersArray.find(
+        (user) => user.email === e.target.elements.email.value
+      );
+
+      if (!found) {
+        setThere(true);
+        return;
+      }
+
+      setChatUser(found);
+
+      if (listOfUserMessages.length === 0) {
+        setListOfUserMessages(prev => [...prev, { id: ++identity.current, ...found }]);
+      } else {
+        setListOfUserMessages(prev => [...prev, { id: ++identity.current, ...found }]);
+        setMany("entered");
+      }
+
+    } catch (error) {
+      console.error("Error finding user:", error);
+    }
+
     setNewMessage(false)
   }
 
@@ -120,7 +159,7 @@ function App() {
       element: <SignUpLoginLayout />,
       children: [
         {
-          path: 'sign-up',
+          index: true,
           element:<SignUp />
         },
         {
@@ -206,15 +245,17 @@ function App() {
         setNewMessage,
         chatUser,
         setChatUser,
-        userEmail,
-        setUserEmail,
         there,
         setThere,
         filled,
         setFilled,
         handleNewMessage,
         many,
-        setMany
+        setMany,
+        chatId,
+        setChatId,
+        listOfUserMessages,
+        setListOfUserMessages
       }}>
         <UpdateUserInfo />
         <APIProvider apiKey={'AIzaSyAP1KmNayA4TiRmtShgFy13KHjYdxq3YBc'} onLoad={() => console.log('Maps API has loaded.')}>
