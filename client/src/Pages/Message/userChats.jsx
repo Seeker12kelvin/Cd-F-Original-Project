@@ -1,24 +1,19 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import User from '../../components/User'
-import { Link, NavLink, Outlet } from 'react-router-dom'
-import { FaAlignJustify, FaArchive, FaBold, FaItalic, FaLink, FaSearch, FaStar } from 'react-icons/fa'
+import { NavLink, Outlet } from 'react-router-dom'
+import { FaSearch } from 'react-icons/fa'
 import { BsPersonFill } from 'react-icons/bs'
 import NewMessageModal from './newMessageModal'
-import { BiSend } from 'react-icons/bi'
-import { MdDelete, MdMenu } from 'react-icons/md'
-import { CiWarning } from 'react-icons/ci'
-import { FaPenNib } from 'react-icons/fa6'
-import { RiAttachment2 } from "react-icons/ri";
 
 const UserChats = () => {
 
-  const { chatUser, setNewMessage, listOfUserMessages } = useContext(User)
+  const { messageState, setMessgeState } = useContext(User)
 
   const style = {
     backgroundColor: "#F7F7FD",
   }
 
-  if(!chatUser){
+  if(!messageState.chatUser){
     return <div>No chat user selected</div>
   }
   return (
@@ -34,12 +29,12 @@ const UserChats = () => {
           </label>
           <button
             type="button"
-            onClick={() => setNewMessage(true)}
+            onClick={() => setMessgeState(prev => ({...prev, newMessage: !prev}))}
             className='bg-[#7065F0] h-full flex items-center gap-2 rounded-lg text-white text-3xl w-fit px-4'>+</button>
         </form>
 
         <div className='mt-24 mb-4 flex items-center justify-between'>
-          {listOfUserMessages.map((data) => {
+          {messageState.listOfUserMessages.map((data) => {
 
             const firstName = data.name.split(' ')[0]
             const lastName = data.name.split('') === 1 ? data.name.split('')[1]: data.name.split('') === 3 ? data.name.split('')[2]: data.name.split(' ')[2]

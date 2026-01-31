@@ -1,12 +1,11 @@
-import React, { useContext } from 'react'
-import { FaX, FaXmark } from 'react-icons/fa6'
+import { useContext } from 'react'
 import User from '../../components/User'
 import NewMessageModal from './newMessageModal'
 
 const UserMessages = () => {
 
   const {
-    setNewMessage, 
+    setMessgeState 
   } = useContext(User)
 
   return (
@@ -16,7 +15,7 @@ const UserMessages = () => {
         <h2 className='font-bold text-2xl'>Messages</h2>
         <p className='text-[#6C727F]'>Messages is a feature that helps you converse with applicants and landlords. Let’s send your first message.</p>
         <button
-          onClick={() => setNewMessage(prev => !prev)}
+          onClick={() => setMessgeState(prev => ({...prev, newMessage: !prev}))}
           className='bg-[#7065F0] text-white px-4 py-2 rounded-lg'>
           New Message
         </button>

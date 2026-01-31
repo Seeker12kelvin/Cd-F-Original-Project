@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '../rentSearch.module.css'
 import { FaBath, FaBed, FaStarOfLife } from 'react-icons/fa';
 import Squares from "../../../../Images/Square-Meters-Outline.png";

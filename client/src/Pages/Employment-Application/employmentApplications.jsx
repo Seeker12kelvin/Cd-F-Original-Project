@@ -1,4 +1,3 @@
-import React from 'react';
 import './employmentApplication.module.css';
 
 const EmploymentApplications = () => {

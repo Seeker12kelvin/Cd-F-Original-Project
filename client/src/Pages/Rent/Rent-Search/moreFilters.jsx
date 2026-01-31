@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './rentSearch.module.css'
 import User from '../../../components/User'
-import useFilterLogic from '../../../components/FilterLogic'
 
 const MoreFilters = ({ filLog }) => {
 

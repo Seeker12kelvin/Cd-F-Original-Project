@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import './message.module.css'
 import { FaBurger } from 'react-icons/fa6'
-import { FaBell, FaList, FaRegListAlt } from 'react-icons/fa'
+import { FaBell, FaList } from 'react-icons/fa'
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiHouseSimpleLight } from "react-icons/pi";
 import { AiOutlineDollar } from "react-icons/ai";
@@ -53,11 +53,11 @@ const Message = () => {
 
   const navigate = useNavigate()
 
-  const { many, listOfMessages } = useContext(User)
+  const { messageState } = useContext(User)
 
   useEffect(() => {
     navigate("/message/chat");
-  }, [listOfMessages])
+  }, [messageState.listOfMessages])
 
   return (
     <>
@@ -67,7 +67,7 @@ const Message = () => {
         </button>
 
         <h1 className='font-bold text-2xl'>Messages</h1>
-        {many && <p>{many}</p>}
+        {messageState.many && <p>{messageState.many}</p>}
 
         <div className='flex items-center gap-4'>
            <button className='h-full p-3 rounded-xl bg-[#E0DEF7] border-[#E0DEF7] text-center border-r-2 flex items-center'>

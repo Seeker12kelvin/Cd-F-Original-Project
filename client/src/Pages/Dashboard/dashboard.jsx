@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import styles from "./dashboard.module.css"
-import { FaBath, FaBed, FaDotCircle } from 'react-icons/fa';
-import { CiMenuBurger, CiMenuFries, CiMenuKebab } from 'react-icons/ci';
+import { FaBath, FaBed } from 'react-icons/fa';
+import { CiMenuKebab } from 'react-icons/ci';
 import User from '../../components/User';
 import properDetails, { favoriteDetails } from '../../data/data';
 import FavoriteButton from '../../components/favoriteFunction';
 import Squares from "../../Images/Square-Meters-Outline.png";
 import Percentage from '../../Images/Percentage.svg'
-import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
 

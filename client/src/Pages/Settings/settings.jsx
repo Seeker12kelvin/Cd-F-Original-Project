@@ -1,4 +1,3 @@
-import React from 'react'
 import './settings.module.css'
 import LogoImg from '../../Images/Logo.png'
 import { FaBell } from 'react-icons/fa'

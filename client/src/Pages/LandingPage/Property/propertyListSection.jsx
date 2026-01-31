@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaKey, FaSearch } from 'react-icons/fa'
 import styles from '../landingPage.module.css'

@@ -1,10 +1,9 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import styles from './personalApplications.module.css'
 import { Link, useParams } from 'react-router-dom'
 import properDetails from '../../data/data'
 import Squares from "../../Images/Square-Meters-Outline.png";
 import { FaBath, FaBed, FaGasPump, FaInternetExplorer, FaPhone } from 'react-icons/fa';
-import { RiErrorWarningLine } from "react-icons/ri";
 import { MdElectricBolt } from "react-icons/md";
 
 const PersonalApplications = () => {

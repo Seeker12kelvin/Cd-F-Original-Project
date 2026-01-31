@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from "./application.module.css"
-import { FaAngleDown, FaCalendar, FaCalendarAlt, FaCheckCircle, FaDotCircle, FaFilePdf, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
+import { FaAngleDown, FaCheckCircle, FaFilePdf, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
 import { FaRegAddressBook } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import properDetails from '../../data/data';

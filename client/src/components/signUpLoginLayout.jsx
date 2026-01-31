@@ -1,6 +1,5 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom';
-import { FaBath, FaGoogle, FaStarOfLife } from 'react-icons/fa';
+import { FaBath, FaStarOfLife } from 'react-icons/fa';
 import Logo from './Logo';
 import BeverlyImg from "../Images/BeverlySpring.png";
 import LogoImg from "../Images/Logo.png";

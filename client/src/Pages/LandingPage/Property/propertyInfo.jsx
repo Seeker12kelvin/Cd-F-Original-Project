@@ -1,4 +1,3 @@
-import React from 'react'
 import Illustrations from '../../../Images/Illustration.png';
 
 const PropertyInfo = () => {

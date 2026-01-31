@@ -1,8 +1,7 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import { favoriteDetails } from '../../data/data'
 import FavoriteButton from '../favoriteFunction'
 import { FaBath, FaBed, FaStarOfLife } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import styles from './PropertiesListData.module.css'
 import Squares from "../../Images/Square-Meters-Outline.png";
 

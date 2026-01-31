@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import User from '../../components/User'
 import { BsPersonFill } from "react-icons/bs";
 

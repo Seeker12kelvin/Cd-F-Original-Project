@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import User from './User';
 import { FaAngleDown, FaReadme } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { FaPerson } from 'react-icons/fa6';
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiLogout } from 'react-icons/ci';
 import { CgProfile } from "react-icons/cg";

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./signUp.module.css";
-import { FaBath, FaGoogle, FaSquare, FaStarOfLife } from 'react-icons/fa';
+import { FaGoogle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import User from '../../components/User';
 import Loading from '../../Images/bouncing-circles.svg'
-import firebaseLogic from '../../components/firebaseLogic';
+import firebaseLogic from '../../services/firebaseLogic';
 
 const SignUp = () => {
-  const { loadingState, setLoadingState, setUserData } = useContext(User);
+  const { authState, setAuthState, setUserData } = useContext(User);
 
   const { reference, push, get } = firebaseLogic();
   
@@ -54,7 +54,7 @@ const SignUp = () => {
       localStorage.setItem("loginUserData", JSON.stringify(newUserData));
 
       setUserData(newUserData);
-      setLoadingState(true);
+      setAuthState(prev => ({...prev, loadingState: !prev,}));
 
     } catch (error) {
       console.error("Signup error:", error);
@@ -63,13 +63,13 @@ const SignUp = () => {
 
 
   useEffect(() => {
-    if(loadingState){
+    if(authState.loadingState){
       setTimeout(() => {
-        setLoadingState(prev => !prev)
+        setAuthState(prev => ({...prev,}));
         navigate('/home')
       }, 3000)
     }
-  }, [loadingState, navigate])
+  }, [authState.loadingState, navigate])
 
   useEffect(() => {
     const storedData = localStorage.getItem('loginUserData');
@@ -91,7 +91,7 @@ const SignUp = () => {
 
   return (
     <>
-    {!loadingState ?
+    {!authState.loadingState ?
       <form onSubmit={handleSubmit} className={`${styles['login-form']} w-[50%] h-[80%] flex flex-col gap-6`}>
         <div>
           <h1 className='text-[32px] font-bold'>Welcome back</h1>

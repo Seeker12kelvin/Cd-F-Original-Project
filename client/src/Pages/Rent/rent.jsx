@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import './rent.module.css';
 import { FaAngleDown} from 'react-icons/fa';
 import { FaLessThan } from 'react-icons/fa';

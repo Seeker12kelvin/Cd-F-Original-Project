@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from "./favorite.module.css"
-import FavoriteButton from '../../components/favoriteFunction.jsx'
+import FavoriteButton from '../../components/favoriteFunction'
 import { FaBed, FaList, FaTrash } from 'react-icons/fa';
 import { FaBath } from 'react-icons/fa';
 import Squares from "../../Images/Square-Meters-Outline.png";
 import { FaStarOfLife } from 'react-icons/fa';
 import { BsFillGridFill } from "react-icons/bs";
-import User from '../../components/User.jsx';
+import User from '../../components/User';
 
 const Favorite = () => {
   const { userData } = React.useContext(User)

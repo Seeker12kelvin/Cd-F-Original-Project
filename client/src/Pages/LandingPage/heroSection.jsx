@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import styles from './landingPage.module.css'
 import PastBuyer from '../../Images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png';
 import landingImage1 from '../../Images/landing-image.png';
@@ -6,7 +5,6 @@ import { BiSearch, BiSolidQuoteAltRight } from 'react-icons/bi';
 import Logo from '../../components/Logo';
 
 const  HeroSection = () => {
-  const [activeTab, setActiveTab] = useState('Rent')
 
   return (
     <section className={`${styles['onLoad-animation']} w-full min-h-screen px-4 sm:px-10 lg:px-20 bg-linear-to-b from-[#E0DEF7] to-[#e0def700]  flex justify-center items-center gap-6 max-sm:pl-0 max-sm:`}>
@@ -20,7 +18,7 @@ const  HeroSection = () => {
           <div className=''>
             <nav aria-label="Property type">
               <ul className='bg-white flex w-fit rounded-t-xl shadow-2xl shadow-[#00000024]'>
-                <li><button className={`p-5 pb-3 w-full ${activeTab === 'Rent' ? 'border-b-4 border-[#7065F0] text-[#7065F0]': ''}`}>Rent</button></li>
+                <li><button className={`p-5 pb-3 w-full border-b-4 border-[#7065F0] text-[#7065F0]`}>Rent</button></li>
                 <li><button className='p-5 w-full'>Buy</button></li>
                 <li><button className='p-5 w-full'>Sell</button></li>
               </ul>

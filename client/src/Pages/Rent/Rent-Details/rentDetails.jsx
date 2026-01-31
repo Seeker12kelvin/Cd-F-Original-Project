@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import styles from "./rentDetails.module.css";
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import properDetails from '../../../data/data';
-import { FaBath, FaBed, FaCheckCircle, FaGreaterThan, FaHome, FaLessThan, FaMapMarker, FaPaintBrush, FaQuestionCircle, FaReadme, FaSearch, FaSquare, FaStarOfLife, FaVideo } from 'react-icons/fa';
+import { FaBath, FaBed, FaGreaterThan, FaHome, FaLessThan, FaMapMarker, FaQuestionCircle, FaReadme, FaSearch, FaStarOfLife, FaVideo } from 'react-icons/fa';
 import { CiHeart, CiShare2 } from 'react-icons/ci';
 import Owner from "../../../Images/ListingOwner.png";
 import Squares from "../../../Images/Square-Meters-Outline.png";

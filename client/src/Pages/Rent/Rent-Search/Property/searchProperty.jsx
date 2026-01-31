@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import PropertyList from './propertyList'
 import { RiExpandUpDownLine } from 'react-icons/ri'
 import { FaAngleDown, FaGreaterThan, FaList, FaSearch } from 'react-icons/fa'

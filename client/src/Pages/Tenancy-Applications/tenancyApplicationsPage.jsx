@@ -1,9 +1,6 @@
-import React from 'react'
 import './tenancyApplicationsPage.module.css'
-import HeaderContent from '../../components/HeaderContent'
 import Logo from '../../components/Logo'
-import { FaAngleDown, FaBath, FaBed, FaBell, FaRegArrowAltCircleRight, FaRegBell } from 'react-icons/fa'
-import User from '../../components/User'
+import { FaRegBell } from 'react-icons/fa'
 import ProfileMenuBar from '../../components/ProfileMenuBar'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { MdKeyboardArrowRight } from "react-icons/md";

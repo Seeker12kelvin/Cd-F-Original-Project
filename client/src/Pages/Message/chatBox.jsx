@@ -1,4 +1,3 @@
-import React from 'react'
 import { MdDelete, MdMenu } from 'react-icons/md'
 import { FaArchive, FaStar, FaAlignJustify, FaBold, FaItalic, FaLink } from 'react-icons/fa'
 import { RiAttachment2 } from "react-icons/ri";

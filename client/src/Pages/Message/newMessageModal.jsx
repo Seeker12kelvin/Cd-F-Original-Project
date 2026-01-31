@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import User from '../../components/User'
 
 const NewMessageModal = () => {
 
-  const {newMessage, setNewMessage, handleNewMessage, filled, setFilled, there} = useContext(User)
+  const { messageState, setMessageState, handleNewMessage } = useContext(User)
 
   return (
     <>
-      {newMessage ?
+      {messageState.newMessage ?
       <section className='fixed inset-0 bg-[#0009297e] bg-opacity-50 z-10'>
         <form
           onSubmit={handleNewMessage}
@@ -16,7 +16,7 @@ const NewMessageModal = () => {
           <div className='flex justify-between border-b p-6 border-[#E0DEF7] pb-4'>
             <h2 className='font-bold text-lg'>New Message</h2>
 
-            <button onClick={() => setNewMessage(false)} className='text-2xl text-[#000929a3]'>
+            <button onClick={() => setMessageState(prev => ({...prev, newMessage: false}))} className='text-2xl text-[#000929a3]'>
               <FaXmark />
             </button>
           </div>
@@ -36,9 +36,9 @@ const NewMessageModal = () => {
                 placeholder="hi@example.com"
                 onChange={(e) => {
                   if(e.target.value.length > 0){
-                    setFilled(true)
+                    setMessageState(prev => ({...prev, filled: !prev}))
                   } else {
-                    setFilled(false)
+                    setMessageState(prev => ({...prev, filled: !prev}))
                   }
                 }}
                 required
@@ -47,12 +47,12 @@ const NewMessageModal = () => {
             </label>
 
             <button
-              disabled={filled ? false: true}
+              disabled={messageState.filled ? false: true}
               type="submit"
-              className={`bg-[#7065F0] text-white px-4 py-3 rounded-lg w-full ${filled ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}>
+              className={`bg-[#7065F0] text-white px-4 py-3 rounded-lg w-full ${messageState.filled ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}`}>
               Start a conversation
             </button>
-            {there ? <p className='text-red-500'>No user found with that email.</p> : null}
+            {messageState.there ? <p className='text-red-500'>No user found with that email.</p> : null}
           </div>
           
 

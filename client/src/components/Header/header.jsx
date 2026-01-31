@@ -1,6 +1,4 @@
-import React from 'react';
-import { Outlet, Link, NavLink } from 'react-router-dom';
-import Logo from '../Logo.jsx';
+import { Outlet } from 'react-router-dom';
 import Footer from '../Footer/footer.jsx';
 import "./header.module.css";
 import HeaderContent from '../HeaderContent.jsx';

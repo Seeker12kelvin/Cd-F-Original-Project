@@ -1,4 +1,3 @@
-import React from 'react'
 import { initializeApp } from 'firebase/app';
 import { getDatabase, update, ref, push, get, onValue } from 'firebase/database';
 

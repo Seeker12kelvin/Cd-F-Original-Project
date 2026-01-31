@@ -1,4 +1,3 @@
-import React from 'react';
 import './footer.module.css';
 import Logo from '../Logo';
 import { FaCopyright, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';

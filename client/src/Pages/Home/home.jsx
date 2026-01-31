@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import "./home.module.css"
-import { Outlet, NavLink, Link } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import { IoCloseOutline } from "react-icons/io5";
 import Logo from "../../components/Logo"
-import { FaAngleDown, FaBell, FaSearch } from 'react-icons/fa';
+import { FaBell, FaSearch } from 'react-icons/fa';
 import User from '../../components/User';
 import ProfileMenuBar from '../../components/ProfileMenuBar';
 
@@ -30,6 +30,7 @@ const Home = () => {
   const firstName = name.split(' ')[0]
 
   return (
+    // I planned on protecting a lot of pages so I used another way to do it with this page but I will refactor the code when I'm done with others.
     // !userLogged
     //   ?
     //   <div className='flex flex-col gap-4 justify-center items-center h-screen'>

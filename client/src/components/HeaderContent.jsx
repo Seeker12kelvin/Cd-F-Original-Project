@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from './Logo'
 import { Link, NavLink } from 'react-router-dom'
 import { CiMenuBurger } from 'react-icons/ci'

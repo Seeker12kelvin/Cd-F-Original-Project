@@ -1,5 +1,3 @@
-import React from 'react'
-
 const LandlordInfo = () => {
   return (
     <section className='flex flex-col items-center justify-center gap-4 bg-linear-to-b from-[#F7F7FD] to-[#F7F7FD] p-50 pt-20 pb-20 max-sm:p-5 max-sm:pb-15 max-sm:text-center'>

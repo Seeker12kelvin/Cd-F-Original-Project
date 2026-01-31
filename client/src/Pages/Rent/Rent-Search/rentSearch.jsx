@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import properDetails from '../../../data/data';
 import RenderedMap from '../../../components/renderedMap';
 import SearchProperty from './Property/searchProperty';
-import User from '../../../components/User';
-import useFilterLogic from '../../../components/FilterLogic';
+import useFilterLogic from '../../../hooks/useFilterLogic';
 
 const RentSearch = () => {
 
