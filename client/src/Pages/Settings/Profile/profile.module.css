@@ -1,0 +1,60 @@
+.Profile-form {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 0.09rem solid #E0DEF7;
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile-form h4 {
+  color: black;
+}
+
+.Profile-form button{
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  border-radius: 0.75rem;
+}
+
+.Profile-form .first-section,
+.Profile-form .second-section,
+.Profile-form .second-section div,
+.Profile-form .second-section div label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Profile-form .first-section,
+.Profile-form .second-section {
+  flex-direction: column;
+}
+
+.Profile-form .second-section,
+.Profile-form .second-section .second-section-div {
+  gap: 1.5rem;
+}
+
+.Profile-form .second-section div label {
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.Profile-form .second-section div label p span {
+  color: #9EA3AE;
+}
+
+.Profile-form .second-section div label input,
+.Profile-form .second-section label input {
+  width: 100%;
+  border: 0.15rem solid #E0DEF7;
+  border-radius: 0.5rem;
+  padding: .7rem;
+}
+
+.Profile-form .second-section label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

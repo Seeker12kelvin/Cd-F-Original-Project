@@ -1,10 +1,9 @@
 import { useState } from "react";
-import User from "../components/User";
 
-const UserProvider = ({ children }) => {
+const useDataProvider = () => {
 
   const [userData, setUserData] = useState({
-    name: '',
+    name: 'Kelvin Tamaramiepayefa Donye',
     password: '',
     email: '',
     profilePic: '',
@@ -16,16 +15,7 @@ const UserProvider = ({ children }) => {
 
   const [updatedProfilePic, setUpdatedProfilePic] = useState('');
 
-  return (
-    <User.Provider value={{
-      userData,
-      setUserData,
-      updatedProfilePic,
-      setUpdatedProfilePic
-    }}>
-      {children}
-    </User.Provider>
-  );
+  return {userData, setUserData, updatedProfilePic, setUpdatedProfilePic};
 };
 
-export default UserProvider;
+export default useDataProvider;
