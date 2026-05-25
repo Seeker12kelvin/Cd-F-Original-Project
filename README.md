@@ -1,5 +1,5 @@
 # Real Estate Web App
-A modern real estate web application built with React, focused on clean architecture, reusable components, and smooth user experience.
+A modern *real estate web* application built with React, focused on clean architecture, reusable components, and smooth user experience.
 
 ## Why this project?
 This project was built to explore scalable frontend architecture and improve code maintainability.
@@ -16,13 +16,14 @@ The focus is not just on features, but on writing clean, readable, and reusable 
 ## Tech Stack
 - **React**
 - **React Router**
-- **Context API**
+- **C ontext API**
 - **Custom Hooks**
 - **Firebase**
 - **Google Maps API**
 - **Vite**
 
 ## Project Structure
+```sh
 src/
 ├── components/        # Reusable UI components
 ├── context/           # Context providers
@@ -32,6 +33,7 @@ src/
 ├── data/              # Static data
 ├── router/            # Application routes
 └── App.jsx
+```
 
 ## Author
 **Kelvin Donye**  
